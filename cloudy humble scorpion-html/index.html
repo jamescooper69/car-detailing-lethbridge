@@ -3,96 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | [Your Car Detailing Business Name]</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Bridge Auto Detailing | Premium Mobile Car Detailing</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">[Your Logo]</div>
-        <ul class="menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li class="dropdown">
-                <a href="#">Services</a>
-                <ul class="dropdown-content">
-                    <li><a href="interior-detailing.html">Interior Detailing</a></li>
-                    <li><a href="exterior-detailing.html">Exterior Detailing</a></li>
-                    <li><a href="complete-auto-detailing.html">Complete Auto Detailing</a></li>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Bridge Auto Detailing</a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="dropdown">
+                        <a href="services.html">Services</a>
+                        <div class="dropdown-content">
+                            <a href="interior-detailing.html">Interior Detailing</a>
+                            <a href="exterior-detailing.html">Exterior Detailing</a>
+                            <a href="complete-auto-detailing.html">Complete Auto Detailing</a>
+                        </div>
+                    </li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
-            </li>
-            <li><a href="location.html">Location</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="#" class="button">Book Now</a></li>
-        </ul>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Premium Car Detailing Services</h1>
-            <p>Experience the ultimate shine and protection for your vehicle.</p>
-            <a href="#" class="button primary-button">Book Now</a>
+            </nav>
+            <div class="cta-button">
+                <a href="contact.html" class="btn-primary">Book Now</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
-    <section class="services-preview">
-        <h2>Our Featured Services</h2>
-        <div class="service-cards">
-            <div class="card">
-                <h3>Interior Detailing</h3>
-                <p>Restore your car's interior to its former glory with our meticulous cleaning and conditioning services.</p>
-                <a href="interior-detailing.html" class="button secondary-button">Learn More</a>
-            </div>
-            <div class="card">
-                <h3>Exterior Detailing</h3>
-                <p>Enhance your car's appearance with our expert washing, polishing, and protective treatments.</p>
-                <a href="exterior-detailing.html" class="button secondary-button">Learn More</a>
-            </div>
-            <div class="card">
-                <h3>Complete Auto Detailing</h3>
-                <p>Our comprehensive detailing package for a thorough rejuvenation inside and out.</p>
-                <a href="complete-auto-detailing.html" class="button secondary-button">Learn More</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials">
-        <h2>What Our Clients Say</h2>
-        <div class="testimonial-cards">
-            <div class="testimonial-card">
-                <p>"Amazing service! My car looks brand new. Highly recommend!"</p>
-                <p class="author">- John Doe</p>
-            </div>
-            <div class="testimonial-card">
-                <p>"Professional, efficient, and the results were outstanding. Will definitely be back."</p>
-                <p class="author">- Jane Smith</p>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="social-icons">
-            <a href="#"><img src="[Facebook Icon]" alt="Facebook"></a>
-            <a href="#"><img src="[Twitter Icon]" alt="Twitter"></a>
-            <a href="#"><img src="[Instagram Icon]" alt="Instagram"></a>
-        </div>
-        <ul class="quick-links">
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="close-btn"><i class="fas fa-times"></i></div>
+        <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
+            <li><a href="interior-detailing.html">Interior Detailing</a></li>
+            <li><a href="exterior-detailing.html">Exterior Detailing</a></li>
+            <li><a href="complete-auto-detailing.html">Complete Auto Detailing</a></li>
             <li><a href="location.html">Location</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-        <p>&copy; [Year] [Your Car Detailing Business Name]. All rights reserved.</p>
+        <div class="mobile-cta">
+            <a href="contact.html" class="btn-primary">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Mobile Car Detailing in Lethbridge City</h1>
+                <p class="subtitle">Book today for a luxury car detailing experience—exclusively serving Lethbridge City!</p>
+                <p class="tagline">We come to your doorstep in Lethbridge City, with the gold standard in car care.</p>
+                <div class="hero-buttons">
+                    <a href="contact.html" class="btn-primary">Book Now</a>
+                    <a href="contact.html" class="btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2>Our Premium Detailing Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="img/interior-detailing.jpg" alt="Interior Detailing">
+                    </div>
+                    <h3>Interior Car Detailing</h3>
+                    <p>Experience top-quality car detailing at your home or workplace in Lethbridge City! Our expert team ensures your vehicle looks spotless.</p>
+                    <a href="interior-detailing.html" class="btn-text">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="img/exterior-detailing.jpg" alt="Exterior Detailing">
+                    </div>
+                    <h3>Exterior Car Detailing</h3>
+                    <p>Restore your vehicle's shine with our premium exterior detailing service. We use professional-grade products for lasting results.</p>
+                    <a href="exterior-detailing.html" class="btn-text">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="img/complete-detailing.jpg" alt="Complete Auto Detailing">
+                    </div>
+                    <h3>Complete Auto Detailing</h3>
+                    <p>Our comprehensive detailing package includes both interior and exterior services for the ultimate refresh of your vehicle.</p>
+                    <a href="complete-auto-detailing.html" class="btn-text">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready for a Showroom Shine?</h2>
+            <p>Only in Lethbridge City — mobile luxury detailing at your convenience. Gold-standard service from booking to finish.</p>
+            <a href="contact.html" class="btn-primary">Book Your Detailing Now</a>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us">
+        <div class="container">
+            <h2>Why Choose Bridge Auto Detailing</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Mobile Service</h3>
+                    <p>We come to your home or office anywhere in Lethbridge City, providing seamless convenience.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Professional Results</h3>
+                    <p>Our technicians use only the most advanced products for an unmatched finish and protection.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Luxury Experience</h3>
+                    <p>Enjoy a premium auto detailing experience designed to impress and satisfy every time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Bridge Auto Detailing</h3>
+                    <p>Serving Lethbridge City, Canada with premium mobile car detailing. Experience automotive care like never before!</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="interior-detailing.html">Interior Detailing</a></li>
+                        <li><a href="exterior-detailing.html">Exterior Detailing</a></li>
+                        <li><a href="complete-auto-detailing.html">Complete Auto Detailing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Book Now</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms and Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bridge Auto Detailing. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
