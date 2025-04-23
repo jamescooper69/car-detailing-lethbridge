@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bridge Auto Detailing | Premium Mobile Car Detailing</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/Logo-removebg-preview (2).png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,15 +22,20 @@
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li class="dropdown">
-                        <a href="">Detailing <i class="fa-solid fa-caret-down"></i></a> 
-                        <div class="dropdown-content">
+                    <li class="dropdown detailing-dropdown">
+                        <a href="">Detailing <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-content detailing-dropdown-content">
                             <a href="interior-detailing.html">Interior Detailing</a>
                             <a href="exterior-detailing.html">Exterior Detailing</a>
                             <a href="complete-auto-detailing.html">Complete Auto Detailing</a>
                         </div>
                     </li>
-                    <li><a href="location.html">Location</a></li>
+                    <li class="dropdown location-dropdown">
+                        <a href="location.html">Location <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-content location-dropdown-content">
+                            <a href="location.html">Alberta</a>
+                        </div>
+                    </li>
                     <li><a href="pricing.html">Pricing</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -50,13 +56,16 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li>Detailing <i class="fa-solid fa-caret-down"></i></li>
-            <a href="interior-detailing.html">1. Interior Detailing</a><br>
-            <a href="exterior-detailing.html">2. Exterior Detailing</a><br>
-            <a href="complete-auto-detailing.html">3. Complete Auto Detailing</a>
+            <a href="interior-detailing.html">Interior Detailing</a><br>
+            <a href="exterior-detailing.html">Exterior Detailing</a><br>
+            <a href="complete-auto-detailing.html">Complete Auto Detailing</a>
             <br>
             <br>
-            <li style="border-top: 1px solid #e0e0e0; padding-top: 16px;"><a href="location.html">Location</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
+            <li style="border-top: 1px solid #e0e0e0; padding-top: 16px;">Location <i class="fa-solid fa-caret-down"></i></li>
+            <a href="location.html">Alberta</a>
+            <br>
+            <br>
+            <li style="border-top: 1px solid #e0e0e0; padding-top: 16px;"><a href="pricing.html">Pricing</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="mobile-cta">
@@ -180,8 +189,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const currentPage = window.location.pathname.split('/').pop();
             const navLinks = document.querySelectorAll('.nav-links a');
-            const dropdownLinks = document.querySelectorAll('.dropdown-content a');
-            const detailingDropdown = document.querySelector('.dropdown > a');
+            const detailingDropdownLinks = document.querySelectorAll('.detailing-dropdown-content a');
+            const detailingDropdown = document.querySelector('.detailing-dropdown > a');
+            const locationDropdownLinks = document.querySelectorAll('.location-dropdown-content a');
+            const locationDropdown = document.querySelector('.location-dropdown > a');
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -190,17 +201,29 @@
                 }
             });
 
-            dropdownLinks.forEach(link => {
+            let detailingSubPageActive = false;
+            detailingDropdownLinks.forEach(link => {
                 if (link.getAttribute('href') === currentPage) {
-                    if (detailingDropdown) {
-                        detailingDropdown.classList.add('active');
-                    }
+                    detailingSubPageActive = true;
                 }
             });
+            if (detailingSubPageActive && detailingDropdown) {
+                detailingDropdown.classList.add('active');
+            }
+
+            let locationSubPageActive = false;
+            locationDropdownLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    locationSubPageActive = true;
+                }
+            });
+            if (locationSubPageActive && locationDropdown) {
+                locationDropdown.classList.add('active');
+            }
 
             // Special case for the index page
+            const homeLink = document.querySelector('.nav-links a[href="index.html"]');
             if (currentPage === 'index.html' || currentPage === '') {
-                const homeLink = document.querySelector('.nav-links a[href="index.html"]');
                 if (homeLink) {
                     homeLink.classList.add('active');
                 }

@@ -3,12 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exterior Detailing | Bridge Auto Detailing</title>
+    <title>Interior Detailing | Bridge Auto Detailing</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      data-purpose="Layout StyleSheet"
+      title="Web Awesome"
+      href="/css/app-wa-759e655e9594906b7aa7a0115e8d04dd.css?vsn=d"
+    >
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
+      >
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-thin.css"
+      >
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-solid.css"
+      >
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-regular.css"
+      >
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-light.css"
+      >
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-thin.css"
+      >
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-solid.css"
+      >
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-regular.css"
+      >
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-light.css"
+      >
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-thin.css"
+      >
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-regular.css">
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-light.css">
 </head>
 <body>
     <!-- Header -->
@@ -21,15 +73,20 @@
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li class="dropdown">
-                        <a href="">Detailing <i class="fa-solid fa-caret-down"></i></a> 
-                        <div class="dropdown-content">
+                    <li class="dropdown detailing-dropdown">
+                        <a href="">Detailing <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-content detailing-dropdown-content">
                             <a href="interior-detailing.html">Interior Detailing</a>
                             <a href="exterior-detailing.html">Exterior Detailing</a>
                             <a href="complete-auto-detailing.html">Complete Auto Detailing</a>
                         </div>
                     </li>
-                    <li><a href="location.html">Location</a></li>
+                    <li class="dropdown location-dropdown">
+                        <a href="location.html">Location <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-content location-dropdown-content">
+                            <a href="location.html">Alberta</a>
+                        </div>
+                    </li>
                     <li><a href="pricing.html">Pricing</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -50,13 +107,16 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li>Detailing <i class="fa-solid fa-caret-down"></i></li>
-            <a href="interior-detailing.html">1. Interior Detailing</a><br>
-            <a href="exterior-detailing.html">2. Exterior Detailing</a><br>
-            <a href="complete-auto-detailing.html">3. Complete Auto Detailing</a>
+            <a href="interior-detailing.html">Interior Detailing</a><br>
+            <a href="exterior-detailing.html">Exterior Detailing</a><br>
+            <a href="complete-auto-detailing.html">Complete Auto Detailing</a>
             <br>
             <br>
-            <li style="border-top: 1px solid #e0e0e0; padding-top: 16px;"><a href="location.html">Location</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
+            <li style="border-top: 1px solid #e0e0e0; padding-top: 16px;">Location <i class="fa-solid fa-caret-down"></i></li>
+            <a href="location.html">Alberta</a>
+            <br>
+            <br>
+            <li style="border-top: 1px solid #e0e0e0; padding-top: 16px;"><a href="pricing.html">Pricing</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="mobile-cta">
@@ -67,7 +127,7 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>Exterior Detailing</h1>
+            <h1>Interior Detailing</h1>
         </div>
     </section>
 
@@ -76,12 +136,12 @@
         <div class="container">
             <div class="service-hero-content">
                 <div class="service-hero-image">
-                    <img src="img/exterior-detailing-large.jpg" alt="Exterior Detailing">
+                    <img src="img/interior-detailing-large.jpg" alt="Interior Detailing">
                 </div>
                 <div class="service-hero-text">
-                    <h2>Premium Exterior Detailing</h2>
-                    <p>Restore your vehicle's shine with our professional exterior detailing service. We bring the showroom finish to your doorstep in Lethbridge.</p>
-                    <p>Our exterior detailing service is designed to clean, correct, and protect your vehicle's paint, wheels, and trim, ensuring a lasting shine that turns heads.</p>
+                    <h2>Premium Interior Detailing</h2>
+                    <p>Experience top-quality car detailing at your home or workplace in Lethbridge! Our expert team ensures your vehicle's interior looks spotless and feels fresh.</p>
+                    <p>Our interior detailing service is designed to thoroughly clean, sanitize, and protect all interior surfaces of your vehicle, restoring that new car feeling.</p>
                     <a href="contact.html" class="btn-primary">Book This Service</a>
                 </div>
             </div>
@@ -95,47 +155,38 @@
             <div class="service-features">
                 <div class="feature">
                     <div class="feature-icon">
-                        <i class="fas fa-car-wash"></i>
+                        <i class="fa-solid fa-vacuum"></i>
                     </div>
                     <div class="feature-text">
-                        <h3>Hand Wash</h3>
-                        <p>Gentle two-bucket hand wash to safely remove dirt and contaminants without scratching the paint.</p>
+                        <h3>Deep Vacuuming</h3>
+                        <p>Thorough vacuuming of all carpets, seats, and hard-to-reach areas to remove dirt and debris.</p>
                     </div>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">
-                        <i class="fas fa-clay"></i>
+                        <i class="fas fa-spray-can"></i>
                     </div>
                     <div class="feature-text">
-                        <h3>Clay Bar Treatment</h3>
-                        <p>Clay bar decontamination to remove embedded particles and provide a smooth surface.</p>
+                        <h3>Steam Cleaning</h3>
+                        <p>High-temperature steam cleaning to sanitize surfaces and remove stubborn stains from upholstery.</p>
                     </div>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">
-                        <i class="fas fa-buffer"></i>
+                        <i class="fas fa-wind"></i>
                     </div>
                     <div class="feature-text">
-                        <h3>Paint Correction</h3>
-                        <p>Machine polishing to remove light scratches, swirl marks, and oxidation from the paint surface.</p>
+                        <h3>Air Vent Cleaning</h3>
+                        <p>Detailed cleaning of air vents to remove dust and improve air quality inside your vehicle.</p>
                     </div>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">
-                        <i class="fas fa-tire"></i>
+                        <i class="fa-solid fa-jug-detergent"></i>
                     </div>
                     <div class="feature-text">
-                        <h3>Wheel & Tire Detailing</h3>
-                        <p>Deep cleaning of wheels and tires, including dressing for a long-lasting shine.</p>
-                    </div>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="feature-text">
-                        <h3>Paint Protection</h3>
-                        <p>Application of premium wax or sealant to protect the paint and enhance gloss.</p>
+                        <h3>Leather Treatment</h3>
+                        <p>Specialized cleaning and conditioning of leather surfaces to prevent cracking and maintain softness.</p>
                     </div>
                 </div>
                 <div class="feature">
@@ -143,8 +194,17 @@
                         <i class="fas fa-glass"></i>
                     </div>
                     <div class="feature-text">
-                        <h3>Exterior Glass Cleaning</h3>
-                        <p>Streak-free cleaning of all exterior glass surfaces for optimal visibility.</p>
+                        <h3>Interior Glass Cleaning</h3>
+                        <p>Streak-free cleaning of all interior glass surfaces, including windows and mirrors.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Surface Protection</h3>
+                        <p>Application of UV protectant to dashboard and trim to prevent fading and cracking.</p>
                     </div>
                 </div>
             </div>
@@ -154,22 +214,22 @@
     <!-- Pricing Section -->
     <section class="pricing-section">
         <div class="container">
-            <h2>Exterior Detailing Packages</h2>
+            <h2>Interior Detailing Packages</h2>
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <div class="pricing-header">
-                        <h3>Basic Exterior</h3>
-                        <p class="price">$149</p>
+                        <h3>Basic Interior</h3>
+                        <p class="price">$129</p>
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><i class="fas fa-check"></i> Hand Wash</li>
-                            <li><i class="fas fa-check"></i> Wheel Cleaning</li>
-                            <li><i class="fas fa-check"></i> Tire Dressing</li>
-                            <li><i class="fas fa-check"></i> Exterior Glass Cleaning</li>
-                            <li><i class="fas fa-check"></i> Basic Wax Protection</li>
-                            <li><i class="fas fa-times"></i> Clay Bar Treatment</li>
-                            <li><i class="fas fa-times"></i> Paint Correction</li>
+                            <li><i class="fas fa-check"></i> Complete Vacuuming</li>
+                            <li><i class="fas fa-check"></i> Wipe Down All Surfaces</li>
+                            <li><i class="fas fa-check"></i> Interior Glass Cleaning</li>
+                            <li><i class="fas fa-check"></i> Air Vent Dusting</li>
+                            <li><i class="fas fa-check"></i> Basic Fabric/Leather Cleaning</li>
+                            <li><i class="fas fa-times"></i> Steam Cleaning</li>
+                            <li><i class="fas fa-times"></i> Leather Conditioning</li>
                         </ul>
                     </div>
                     <div class="pricing-footer">
@@ -178,19 +238,19 @@
                 </div>
                 <div class="pricing-card featured">
                     <div class="pricing-header">
-                        <h3>Premium Exterior</h3>
-                        <p class="price">$249</p>
+                        <h3>Premium Interior</h3>
+                        <p class="price">$199</p>
                         <span class="featured-tag">Most Popular</span>
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><i class="fas fa-check"></i> Hand Wash</li>
-                            <li><i class="fas fa-check"></i> Wheel & Tire Detailing</li>
-                            <li><i class="fas fa-check"></i> Clay Bar Treatment</li>
-                            <li><i class="fas fa-check"></i> One-Step Paint Correction</li>
-                            <li><i class="fas fa-check"></i> Premium Sealant Protection</li>
-                            <li><i class="fas fa-check"></i> Exterior Glass Cleaning</li>
-                            <li><i class="fas fa-check"></i> Trim Restoration</li>
+                            <li><i class="fas fa-check"></i> Complete Vacuuming</li>
+                            <li><i class="fas fa-check"></i> Deep Clean All Surfaces</li>
+                            <li><i class="fas fa-check"></i> Interior Glass Cleaning</li>
+                            <li><i class="fas fa-check"></i> Thorough Air Vent Cleaning</li>
+                            <li><i class="fas fa-check"></i> Steam Cleaning</li>
+                            <li><i class="fas fa-check"></i> Leather Conditioning</li>
+                            <li><i class="fas fa-check"></i> Fabric Protection</li>
                         </ul>
                     </div>
                     <div class="pricing-footer">
@@ -199,18 +259,18 @@
                 </div>
                 <div class="pricing-card">
                     <div class="pricing-header">
-                        <h3>Luxury Exterior</h3>
-                        <p class="price">$349</p>
+                        <h3>Luxury Interior</h3>
+                        <p class="price">$279</p>
                     </div>
                     <div class="pricing-features">
                         <ul>
                             <li><i class="fas fa-check"></i> All Premium Features</li>
-                            <li><i class="fas fa-check"></i> Two-Step Paint Correction</li>
-                            <li><i class="fas fa-check"></i> Ceramic Coating Application</li>
-                            <li><i class="fas fa-check"></i> Headlight Restoration</li>
-                            <li><i class="fas fa-check"></i> Engine Bay Detailing</li>
-                            <li><i class="fas fa-check"></i> Chrome Polishing</li>
-                            <li><i class="fas fa-check"></i> 6-Month Protection Guarantee</li>
+                            <li><i class="fas fa-check"></i> Carpet Extraction</li>
+                            <li><i class="fas fa-check"></i> Headliner Cleaning</li>
+                            <li><i class="fas fa-check"></i> Odor Elimination</li>
+                            <li><i class="fas fa-check"></i> Premium Leather Treatment</li>
+                            <li><i class="fas fa-check"></i> Dashboard Restoration</li>
+                            <li><i class="fas fa-check"></i> Long-lasting Protectants</li>
                         </ul>
                     </div>
                     <div class="pricing-footer">
@@ -224,19 +284,19 @@
     <!-- Gallery Section -->
     <section class="gallery-section">
         <div class="container">
-            <h2>Our Exterior Detailing Results</h2>
+            <h2>Our Interior Detailing Results</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="img/exterior-gallery-1.jpg" alt="Exterior Detailing Before and After">
+                    <img src="img/interior-gallery-1.jpg" alt="Interior Detailing Before and After">
                 </div>
                 <div class="gallery-item">
-                    <img src="img/exterior-gallery-2.jpg" alt="Exterior Detailing Before and After">
+                    <img src="img/interior-gallery-2.jpg" alt="Interior Detailing Before and After">
                 </div>
                 <div class="gallery-item">
-                    <img src="img/exterior-gallery-3.jpg" alt="Exterior Detailing Before and After">
+                    <img src="img/interior-gallery-3.jpg" alt="Interior Detailing Before and After">
                 </div>
                 <div class="gallery-item">
-                    <img src="img/exterior-gallery-4.jpg" alt="Exterior Detailing Before and After">
+                    <img src="img/interior-gallery-4.jpg" alt="Interior Detailing Before and After">
                 </div>
             </div>
         </div>
@@ -249,26 +309,26 @@
             <div class="testimonial-slider">
                 <div class="testimonial">
                     <div class="testimonial-content">
-                        <p>"I couldn't believe the transformation of my car after Bridge Auto Detailing worked on it. The paint looks better than when I bought it! Their attention to detail is impressive."</p>
+                        <p>"Bridge Auto Detailing transformed my car's interior! It hadn't been cleaned properly in years, and now it looks and smells like new. Highly recommend their interior detailing service!"</p>
                     </div>
                     <div class="testimonial-author">
-                        <p><strong>David R.</strong> - Lethbridge</p>
+                        <p><strong>Sarah M.</strong> - Lethbridge</p>
                     </div>
                 </div>
                 <div class="testimonial">
                     <div class="testimonial-content">
-                        <p>"My black car was covered in swirl marks and water spots. After their premium exterior detailing, it looks like a mirror! Worth every penny for the results they delivered."</p>
+                        <p>"I was amazed at how thorough they were with my SUV's interior. Every nook and cranny was cleaned, and they even removed stains I thought were permanent. Worth every penny!"</p>
                     </div>
                     <div class="testimonial-author">
-                        <p><strong>Amanda L.</strong> - Lethbridge</p>
+                        <p><strong>Michael T.</strong> - Lethbridge</p>
                     </div>
                 </div>
                 <div class="testimonial">
                     <div class="testimonial-content">
-                        <p>"The ceramic coating they applied has made washing my car so much easier. Water beads right off, and it stays cleaner longer. Excellent service and results!"</p>
+                        <p>"As someone with allergies, having a clean car interior is important. Bridge Auto Detailing did an exceptional job sanitizing and cleaning my vehicle. I can breathe easier now!"</p>
                     </div>
                     <div class="testimonial-author">
-                        <p><strong>Robert J.</strong> - Lethbridge</p>
+                        <p><strong>Jennifer K.</strong> - Lethbridge</p>
                     </div>
                 </div>
             </div>
@@ -278,8 +338,8 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <h2>Ready for a Showroom Shine?</h2>
-            <p>Book your exterior detailing appointment today and experience the Bridge Auto Detailing difference.</p>
+            <h2>Ready to Refresh Your Vehicle's Interior?</h2>
+            <p>Book your interior detailing appointment today and experience the Bridge Auto Detailing difference.</p>
             <a href="contact.html" class="btn-primary">Book Your Detailing Now</a>
         </div>
     </section>
@@ -322,8 +382,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const currentPage = window.location.pathname.split('/').pop();
             const navLinks = document.querySelectorAll('.nav-links a');
-            const dropdownLinks = document.querySelectorAll('.dropdown-content a');
-            const detailingDropdown = document.querySelector('.dropdown > a');
+            const detailingDropdownLinks = document.querySelectorAll('.detailing-dropdown-content a');
+            const detailingDropdown = document.querySelector('.detailing-dropdown > a');
+            const locationDropdownLinks = document.querySelectorAll('.location-dropdown-content a');
+            const locationDropdown = document.querySelector('.location-dropdown > a');
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -332,10 +394,18 @@
                 }
             });
 
-            dropdownLinks.forEach(link => {
+            detailingDropdownLinks.forEach(link => {
                 if (link.getAttribute('href') === currentPage) {
                     if (detailingDropdown) {
                         detailingDropdown.classList.add('active');
+                    }
+                }
+            });
+
+            locationDropdownLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    if (locationDropdown) {
+                        locationDropdown.classList.add('active');
                     }
                 }
             });
