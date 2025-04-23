@@ -22,7 +22,7 @@
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li class="dropdown">
-                        <a href="services.html">Services</a>
+                        <a href="">Detailing <i class="fa-solid fa-caret-down"></i></a> 
                         <div class="dropdown-content">
                             <a href="interior-detailing.html">Interior Detailing</a>
                             <a href="exterior-detailing.html">Exterior Detailing</a>
@@ -30,6 +30,7 @@
                         </div>
                     </li>
                     <li><a href="location.html">Location</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -48,10 +49,14 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="interior-detailing.html">Interior Detailing</a></li>
-            <li><a href="exterior-detailing.html">Exterior Detailing</a></li>
-            <li><a href="complete-auto-detailing.html">Complete Auto Detailing</a></li>
-            <li><a href="location.html">Location</a></li>
+            <li>Detailing <i class="fa-solid fa-caret-down"></i></li>
+            <a href="interior-detailing.html">1. Interior Detailing</a><br>
+            <a href="exterior-detailing.html">2. Exterior Detailing</a><br>
+            <a href="complete-auto-detailing.html">3. Complete Auto Detailing</a>
+            <br>
+            <br>
+            <li style="border-top: 1px solid #e0e0e0; padding-top: 16px;"><a href="location.html">Location</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="mobile-cta">
@@ -63,9 +68,9 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Premium Mobile Car Detailing in Lethbridge City</h1>
-                <p class="subtitle">Book today for a luxury car detailing experience—exclusively serving Lethbridge City!</p>
-                <p class="tagline">We come to your doorstep in Lethbridge City, with the gold standard in car care.</p>
+                <h1>Premium Mobile Car Detailing in Lethbridge</h1>
+                <p class="subtitle">Book today for a luxury car detailing experience—exclusively serving Lethbridge</p>
+                <p class="tagline">We come to your doorstep in Lethbridge, with the gold standard in car care.</p>
                 <div class="hero-buttons">
                     <a href="contact.html" class="btn-primary">Book Now</a>
                     <a href="contact.html" class="btn-secondary">Contact Us</a>
@@ -84,7 +89,7 @@
                         <img src="img/interior-detailing.jpg" alt="Interior Detailing">
                     </div>
                     <h3>Interior Car Detailing</h3>
-                    <p>Experience top-quality car detailing at your home or workplace in Lethbridge City! Our expert team ensures your vehicle looks spotless.</p>
+                    <p>Experience top-quality car detailing at your home or workplace in Lethbridge! Our expert team ensures your vehicle looks spotless.</p>
                     <a href="interior-detailing.html" class="btn-text">Learn More</a>
                 </div>
                 <div class="service-card">
@@ -111,7 +116,7 @@
     <section class="cta-section">
         <div class="container">
             <h2>Ready for a Showroom Shine?</h2>
-            <p>Only in Lethbridge City — mobile luxury detailing at your convenience. Gold-standard service from booking to finish.</p>
+            <p>Only in Lethbridge — mobile luxury detailing at your convenience. Gold-standard service from booking to finish.</p>
             <a href="contact.html" class="btn-primary">Book Your Detailing Now</a>
         </div>
     </section>
@@ -123,7 +128,7 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <h3>Mobile Service</h3>
-                    <p>We come to your home or office anywhere in Lethbridge City, providing seamless convenience.</p>
+                    <p>We come to your home or office anywhere in Lethbridge, providing seamless convenience.</p>
                 </div>
                 <div class="feature-card">
                     <h3>Professional Results</h3>
@@ -143,7 +148,7 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <h3>Bridge Auto Detailing</h3>
-                    <p>Serving Lethbridge City, Canada with premium mobile car detailing. Experience automotive care like never before!</p>
+                    <p>Serving Lethbridge, Canada with premium mobile car detailing. Experience automotive care like never before!</p>
                 </div>
                 <div class="footer-links">
                     <h4>Services</h4>
@@ -171,5 +176,36 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const dropdownLinks = document.querySelectorAll('.dropdown-content a');
+            const detailingDropdown = document.querySelector('.dropdown > a');
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            dropdownLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    if (detailingDropdown) {
+                        detailingDropdown.classList.add('active');
+                    }
+                }
+            });
+
+            // Special case for the index page
+            if (currentPage === 'index.html' || currentPage === '') {
+                const homeLink = document.querySelector('.nav-links a[href="index.html"]');
+                if (homeLink) {
+                    homeLink.classList.add('active');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
