@@ -140,3 +140,37 @@ if (yearElement) {
   const currentYear = new Date().getFullYear();
   yearElement.innerHTML = yearElement.innerHTML.replace('2025', currentYear);
 }
+
+// |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Detailing Popup Functionality (NEW CODE ADDED HERE)
+const detailingTrigger = document.querySelector('.mobile-detailing-trigger');
+const detailingPopup = document.querySelector('.detailing-popup');
+const closePopupBtn = document.querySelector('.close-popup');
+const popupLinks = document.querySelectorAll('.popup-links a');
+
+if (detailingTrigger && detailingPopup && closePopupBtn && popupLinks.length > 0) {
+    detailingTrigger.addEventListener('click', () => {
+        detailingPopup.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling behind the popup
+    });
+
+    closePopupBtn.addEventListener('click', () => {
+        detailingPopup.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    });
+
+    popupLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            detailingPopup.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling after choosing an option
+        });
+    });
+
+    // Close popup if user clicks outside the popup content
+    window.addEventListener('click', (event) => {
+        if (event.target === detailingPopup) {
+            detailingPopup.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
