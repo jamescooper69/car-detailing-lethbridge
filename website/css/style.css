@@ -686,112 +686,183 @@ header .container {
   color: var(--light-text);
 }
 
+/* Updated Pricing Section Styles */
 .pricing-section {
   background-color: var(--white);
+  padding: 80px 0;
+}
+
+.pricing-section h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 40px;
+  font-size: 2.2rem;
 }
 
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .pricing-card {
-  background-color: var(--white);
-  border-radius: 10px;
-  overflow: hidden;
+  background-color: #f9f9f9;
+  border-radius: 8px;
   box-shadow: var(--box-shadow);
+  overflow: hidden;
   transition: var(--transition);
-  position: relative;
-}
-
-.pricing-card.featured {
-  transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
 }
 
 .pricing-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.pricing-card.featured:hover {
-  transform: scale(1.05) translateY(-5px);
-}
-
+/* Style for the header of each pricing card */
 .pricing-header {
-  background-color: var(--secondary-color);
-  padding: 30px 20px;
+  background-color: #e9ecef; /* Keep the background color as a fallback */
+  padding: 20px;
   text-align: center;
-  position: relative;
-}
-
-.pricing-header {
-  /* Existing styles */
-  background-color: var(--secondary-color);
-  padding: 30px 20px;
-  text-align: center;
-  position: relative;
-
-  /* New styles for background image */
-  background-image: url('img/image_fx_1.jpg');
-  background-size: cover; /* This will try to cover the entire container */
-  background-position: center; /* This will center the image */
+  border-bottom: 1px solid var(--border-color);
   background-repeat: no-repeat; /* Prevent the image from repeating */
-  display: flex; /* Use flexbox to align text and potentially other elements */
-  justify-content: center; /* Center the text horizontally */
-  align-items: center; /* Center the text vertically */
-  min-height: 150px; /* Adjust this value to control the height of the header with the image */
+  background-size: cover; /* Scale the image to cover the entire header */
+  background-position: center; /* Center the image within the header */
+  color: var(--text-color); /* Ensure text is readable on the image */
+  position: relative; /* Needed for potential text overlay adjustments */
 }
 
+/* Style for the heading text within the header */
 .pricing-header h3 {
-  color: aliceblue;
-  margin-bottom: 0; /* Adjust or remove if needed */
-  z-index: 1; /* Ensure the text stays on top of the background image */
-  padding: 5px 10px; /* Optional: Add some padding around the text */
-  background-color: #dad1d10c;
-  backdrop-filter: blur(5px);
-  border-radius: 5px; /* Optional: Add some rounded corners to the text background */
+  background-color: #ffffffd6;
+  -webkit-backdrop-filter: blur(50%);
+  margin-bottom: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  position: relative; /* To ensure text appears above the background */
+  z-index: 1; /* To ensure text appears above the background */
+  padding: 10px 0; /* Add some padding around the text for better visibility */
+  /* You might want to add a background color or transparency to the text for better readability depending on your image */
+}
+
+.pricing-card.featured {
+  transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary-color);
+}
+
+/* TODO: Featured Header Heading */
+.pricing-card.featured .pricing-header {
+  background-color: #d1e7ff;
+}
+
+.pricing-card.featured .pricing-header h3 {
+  color: var(--primary-dark);
 }
 
 .featured-tag {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: var(--primary-color);
+  background-color: #28a745;
   color: var(--white);
   padding: 5px 10px;
-  border-radius: 20px;
+  border-radius: 5px;
   font-size: 0.8rem;
   font-weight: 500;
 }
 
 .pricing-features {
-  padding: 30px 20px;
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
 }
 
 .pricing-features ul li {
-  margin-bottom: 15px;
   display: flex;
   align-items: center;
+  margin-bottom: 8px;
+  color: var(--text-color);
+  font-size: 0.9rem;
 }
 
 .pricing-features ul li i {
-  margin-right: 10px;
-  font-size: 1rem;
+  margin-right: 8px;
+  font-size: 0.9rem;
+  color: #28a745;
 }
 
-.pricing-features ul li i.fa-check {
-  color: #4CAF50;
-}
-
-.pricing-features ul li i.fa-times {
-  color: #F44336;
-}
-
+/* Updated Pricing Footer Styles */
 .pricing-footer {
-  padding: 0 20px 30px;
+  padding: 20px;
   text-align: center;
+  border-top: 1px solid var(--border-color);
+  display: flex; /* Use flexbox to arrange elements */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center items horizontally */
+  gap: 10px; /* Add some space between the elements */
+}
+
+.pricing-footer p.price { /* Style the main price */
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0; /* Remove default bottom margin */
+  padding: 10px 20px; /* Add padding around the price */
+  border-radius: 5px; /* Add some rounded corners */
+}
+
+.pricing-footer p.price::before {
+  content: 'Starting from ';
+  font-size: 0.9rem;
+  color: var(--light-text);
+  font-weight: normal;
+}
+
+.pricing-footer .additional-pricing-container {
+  display: flex; /* Arrange additional prices in a row */
+  gap: 20px; /* Space between the two price points */
+  font-size: 0.8rem;
+  color: var(--light-text);
+  margin-bottom: 5px; /* Add a little space above the button */
+}
+
+.pricing-footer .additional-pricing-container p {
+  margin-bottom: 0; /* Remove default bottom margin for these paragraphs */
+}
+
+.pricing-footer .additional-pricing-container span {
+  color: var(--text-color);
+}
+
+.pricing-footer .book-now-button { /* Style the "Book Now" button */
+  display: inline-block;
+  background-color: var(--primary-color); /* Use your primary color */
+  color: var(--white);
+  padding: 10px 30px; /* Adjust horizontal padding */
+  border-radius: 5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  width: auto; /* Adjust width to content */
+}
+
+.pricing-footer .book-now-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow);
 }
 
 .gallery-section {

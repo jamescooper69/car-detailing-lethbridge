@@ -54,35 +54,40 @@ if (testimonials.length > 0) {
 }
 
 // ===== Form Validation =====
-const bookingForm = document.getElementById('booking-form');
+// const bookingForm = document.getElementById('booking-form');
 
-if (bookingForm) {
-  bookingForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+// if (bookingForm) {
+//     bookingForm.addEventListener('submit', (e) => {
+//         const name = document.getElementById('name').value;
+//         const email = document.getElementById('email').value;
+//         const phone = document.getElementById('phone').value;
+//         const service = document.getElementById('service').value;
+//         const vehicle = document.getElementById('vehicle').value;
+//         const date = document.getElementById('date').value;
+//         const time = document.getElementById('time').value;
+//         const message = document.getElementById('message').value; // Get the message value
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const service = document.getElementById('service').value;
-    const vehicle = document.getElementById('vehicle').value;
-    const date = document.getElementById('date').value;
-    const time = document.getElementById('time').value;
+//         if (!name || !email || !phone || !service || !vehicle || !date || !time) {
+//             e.preventDefault(); // Prevent submission due to validation error
+//             alert('Please fill in all required fields.');
+//             return;
+//         }
 
-    if (!name || !email || !phone || !service || !vehicle || !date || !time) {
-      alert('Please fill in all required fields.');
-      return;
-    }
+//         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//         if (!emailRegex.test(email)) {
+//             e.preventDefault(); // Prevent submission due to validation error
+//             alert('Please enter a valid email address.');
+//             return;
+//         }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      alert('Please enter a valid email address.');
-      return;
-    }
+//         // Log the form data to the console
+//         console.log("Form Data:", { name, email, phone, service, vehicle, date, time, message });
 
-    alert('Thank you for your booking request! We will contact you shortly to confirm your appointment.');
-    bookingForm.reset();
-  });
-}
+//         // If validation passes, the form will submit to Formspree because we are NOT calling e.preventDefault() here.
+//         alert('Thank you for your booking request! We will contact you shortly to confirm your appointment.');
+//         bookingForm.reset();
+//     });
+// }
 
 // ===== Smooth Scrolling for Anchor Links =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -171,6 +176,56 @@ if (detailingTrigger && detailingPopup && closePopupBtn && popupLinks.length > 0
         if (event.target === detailingPopup) {
             detailingPopup.style.display = 'none';
             document.body.style.overflow = 'auto';
+        }
+    });
+}
+
+// ===== Form Submission with Inline Confirmation =====
+const bookingForm = document.getElementById('booking-form');
+const confirmationMessageDiv = document.getElementById('confirmation-message');
+
+if (bookingForm && confirmationMessageDiv) {
+    bookingForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent the default form submission
+
+        const formData = new FormData(bookingForm);
+
+        try {
+            const response = await fetch(bookingForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json' // Request JSON response
+                }
+            });
+
+            if (response.ok) {
+                // Form submission was successful
+                confirmationMessageDiv.innerHTML = '<span style="color: green;"><i class="fas fa-check"></i> Your Booking is confirmed</span>';
+                confirmationMessageDiv.style.display = 'block';
+
+                // Optionally reset the form after a short delay
+                setTimeout(() => {
+                    bookingForm.reset();
+                    confirmationMessageDiv.style.display = 'none';
+                }, 3000); // Adjust the display time as needed
+            } else {
+                // Form submission failed
+                const error = await response.json();
+                console.error("Form submission error:", error);
+                confirmationMessageDiv.innerHTML = '<span style="color: red;">Oops! Something went wrong. Please try again.</span>';
+                confirmationMessageDiv.style.display = 'block';
+                setTimeout(() => {
+                    confirmationMessageDiv.style.display = 'none';
+                }, 3000);
+            }
+        } catch (error) {
+            console.error("Network error:", error);
+            confirmationMessageDiv.innerHTML = '<span style="color: red;">Network error. Please check your connection.</span>';
+            confirmationMessageDiv.style.display = 'block';
+            setTimeout(() => {
+                confirmationMessageDiv.style.display = 'none';
+            }, 3000);
         }
     });
 }
