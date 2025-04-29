@@ -474,7 +474,7 @@ header .container {
   
   /* Footer */
   footer {
-    background-color: var(--secondary-color);
+    background-color: #212932;
     padding: 60px 0 20px;
   }
   
@@ -491,7 +491,7 @@ header .container {
   }
   
   .footer-info p {
-    color: var(--light-text);
+    color: #ffffffa6;
   }
   
   .footer-links h4 {
@@ -504,7 +504,7 @@ header .container {
   }
   
   .footer-links ul li a {
-    color: var(--light-text);
+    color: #ffffffa6;
   }
   
   .footer-links ul li a:hover {
@@ -515,7 +515,7 @@ header .container {
     text-align: center;
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
-    color: var(--light-text);
+    color: #ffffffa6;
   }
   
   /* Page Header */
@@ -526,7 +526,7 @@ header .container {
   }
   
   .page-header h1 {
-    color: var(--primary-color);
+    color: var(--white);
   }
   
   /* About Page */
