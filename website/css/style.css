@@ -727,27 +727,30 @@ header .container {
 /* Style for the header of each pricing card */
 .pricing-header {
   background-color: #e9ecef; /* Keep the background color as a fallback */
-  padding: 20px;
+  padding: 40px;
   text-align: center;
   border-bottom: 1px solid var(--border-color);
   background-repeat: no-repeat; /* Prevent the image from repeating */
-  background-size: cover; /* Scale the image to cover the entire header */
-  background-position: center; /* Center the image within the header */
-  color: var(--text-color); /* Ensure text is readable on the image */
+  background-size: 500px; /* Scale the image to cover the entire header */
+  background-position: center center; /* Center the image within the header */
+  color: aliceblue; /* Ensure text is readable on the image */
   position: relative; /* Needed for potential text overlay adjustments */
 }
 
 /* Style for the heading text within the header */
 .pricing-header h3 {
   background-color: #ffffffd6;
-  -webkit-backdrop-filter: blur(50%);
+  background: -webkit-linear-gradient(0deg,rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.25));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: aliceblue;
+  backdrop-filter: blur(10px);
   margin-bottom: 0;
   font-size: 1.4rem;
   font-weight: 600;
-  position: relative; /* To ensure text appears above the background */
-  z-index: 1; /* To ensure text appears above the background */
-  padding: 10px 0; /* Add some padding around the text for better visibility */
-  /* You might want to add a background color or transparency to the text for better readability depending on your image */
+  position: relative;
+  z-index: 1;
+  padding: 10px 0; 
 }
 
 .pricing-card.featured {
