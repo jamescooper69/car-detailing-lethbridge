@@ -17,6 +17,26 @@ if (closeMobileMenuBtn) {
     });
 }
 
+// ===== Mobile Menu Dropdowns =====
+const detailingParent = document.querySelector('.mobile-detailing-parent');
+const locationParent = document.querySelector('.mobile-location-parent');
+
+if (detailingParent) {
+    detailingParent.addEventListener('click', (e) => {
+        if (e.target.closest('a')) {
+            detailingParent.classList.toggle('open');
+        }
+    });
+}
+
+if (locationParent) {
+    locationParent.addEventListener('click', (e) => {
+        if (e.target.closest('a')) {
+            locationParent.classList.toggle('open');
+        }
+    });
+}
+
 // ===== FAQ Accordion =====
 const faqItems = document.querySelectorAll('.faq-item');
 
@@ -182,7 +202,7 @@ if (bookingForm && confirmationMessageDiv) {
                 setTimeout(() => {
                     bookingForm.reset();
                     confirmationMessageDiv.style.display = 'none';
-                }, 3000); // Adjust the display time as needed
+                }, 10000); // Adjust the display time as needed
             } else {
                 // Form submission failed
                 const error = await response.json();

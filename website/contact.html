@@ -57,29 +57,25 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li class="mobile-detailing-trigger">Detailing <i class="fa-solid fa-caret-right"></i></li>
-            <li style="border-top: 1px solid #e0e0e0; padding-top: 16px;">Location <i class="fa-solid fa-caret-down"></i></li>
-            <a href="location.html">Alberta</a>
-            <br>
-            <br>
-            <li style="border-top: 1px solid #e0e0e0; padding-top: 16px;"><a href="pricing.html">Pricing</a></li>
+            <li class="mobile-detailing-parent">
+                <a href="#">Detailing <i class="fa-solid fa-caret-down"></i></a>
+                <ul class="mobile-detailing-dropdown">
+                    <li><a href="interior-detailing.html">Interior Detailing</a></li>
+                    <li><a href="exterior-detailing.html">Exterior Detailing</a></li>
+                    <li><a href="complete-auto-detailing.html">Complete Auto Detailing</a></li>
+                </ul>
+            </li>
+            <li class="mobile-location-parent">
+                <a href="#">Location <i class="fa-solid fa-caret-down"></i></a>
+                <ul class="mobile-location-dropdown">
+                    <li><a href="location.html">Alberta</a></li>
+                    </ul>
+            </li>
+            <li><a href="pricing.html">Pricing</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="mobile-cta">
             <a href="contact.html" class="btn-primary">Book Now</a>
-        </div>
-    </div>
-    <div class="detailing-popup">
-        <div class="popup-content">
-            <div class="popup-header">
-                <h3>Which detailing <br> service you want:</h3>
-                <span class="close-popup"><i class="fas fa-times"></i></span>
-            </div>
-            <ul class="popup-links">
-                <li style="border-bottom: 1px solid #e0e0e0;"><a href="interior-detailing.html">Interior Detailing</a></li>
-                <li style="border-bottom: 1px solid #e0e0e0;"><a href="exterior-detailing.html">Exterior Detailing</a></li>
-                <li style="border-bottom: 1px solid #e0e0e0;"><a href="complete-auto-detailing.html">Complete Auto Detailing</a></li>
-            </ul>
         </div>
     </div>
 
@@ -93,6 +89,7 @@
         </div>
       </section>
 
+      <!-- Contact section -->
       <section class="contact-section">
         <div class="container">
             <div class="contact-content">
@@ -165,20 +162,20 @@
                             <input type="tel" id="phone" name="phone" required>
                         </div>
                         <div class="form-group">
-                            <label for="service">City</label>
-                            <select id="service" name="service" required>
+                            <label for="city">City</label>
+                            <select id="city" name="city" required>
                                 <option value="">Select city</option>
-                                <option value="interior">Lethbridge</option>
-                                <option value="exterior">Raymond</option>
-                                <option value="complete">Taber</option>
-                                <option value="complete">Coaldale</option>
-                                <option value="complete">Coalhurst</option>
-                                <option value="complete">Picture butte</option>
+                                <option value="lethbridge">Lethbridge</option>
+                                <option value="raymond">Raymond</option>
+                                <option value="taber">Taber</option>
+                                <option value="coaldale">Coaldale</option>
+                                <option value="coalhurst">Coalhurst</option>
+                                <option value="picture-butte">Picture butte</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="Address">Address</label>
-                            <input type="text" id="phone" name="phone" required>
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" required>
                         </div>
                         <div class="form-group">
                             <label for="service">Service Type</label>
@@ -193,18 +190,18 @@
                             <label for="package">Packages</label>
                             <select id="package" name="package">
                                 <option value="">Select a Package</option>
-                                </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="service">Ad-ons</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select ad-ons</option>
-                                <option value="interior">Pet hair removal</option>
-                                <option value="exterior">Headliner shampoo</option>
-                                <option value="complete">None</option>
                             </select>
                         </div>
-                       
+                        <div class="form-group">
+                            <label for="addons">Ad-ons</label>
+                            <select id="addons" name="addons" required>
+                                <option value="">Select ad-ons</option>
+                                <option value="pet-hair-removal">Pet hair removal</option>
+                                <option value="headliner-shampoo">Headliner shampoo</option>
+                                <option value="none">None</option>
+                            </select>
+                        </div>
+    
                         <div class="form-group">
                             <label for="vehicle">Vehicle Make & Model</label>
                             <input type="text" id="vehicle" name="vehicle" required>
@@ -316,45 +313,66 @@
 
     <script src="js/script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentPage = window.location.pathname.split('/').pop();
-            const navLinks = document.querySelectorAll('.nav-links a');
-            const detailingDropdownLinks = document.querySelectorAll('.detailing-dropdown-content a');
-            const detailingDropdown = document.querySelector('.detailing-dropdown > a');
-            const locationDropdownLinks = document.querySelectorAll('.location-dropdown-content a');
-            const locationDropdown = document.querySelector('.location-dropdown > a');
+        document.addEventListener('DOMContentLoaded', function () {
+        const currentPage = window.location.pathname.split('/').pop();
+        const fullPath = window.location.pathname; // Get the full path
+        const navLinks = document.querySelectorAll('.nav-links > li > a');
+        const detailingDropdown = document.querySelector('.detailing-dropdown > a');
+        const detailingDropdownLinks = document.querySelectorAll('.detailing-dropdown-content a');
+        const locationDropdown = document.querySelector('.location-dropdown > a');
+        const locationDropdownLinks = document.querySelectorAll('.location-dropdown-content a');
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                }
-            });
+        // Remove active class from all top-level links initially
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
 
-            detailingDropdownLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    if (detailingDropdown) {
-                        detailingDropdown.classList.add('active');
-                    }
-                }
-            });
+        // Function to check if a link's href matches the current page
+        const setActiveLink = (link) => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+                return true;
+            }
+            return false;
+        };
 
-            locationDropdownLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    if (locationDropdown) {
-                        locationDropdown.classList.add('active');
-                    }
-                }
-            });
+        let directMatchFound = false;
 
-            // Special case for the index page
-            if (currentPage === 'index.html' || currentPage === '') {
-                const homeLink = document.querySelector('.nav-links a[href="index.html"]');
-                if (homeLink) {
-                    homeLink.classList.add('active');
-                }
+        // Check active status for top-level links
+        navLinks.forEach(link => {
+            if (setActiveLink(link)) {
+                directMatchFound = true;
             }
         });
+
+        // Check and set active state for Detailing dropdown
+        if (detailingDropdown) {
+            detailingDropdownLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    detailingDropdown.classList.add('active');
+                    return;
+                }
+            });
+        }
+
+        // Check and set active state for Location dropdown
+        if (locationDropdown) {
+            locationDropdownLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    locationDropdown.classList.add('active');
+                    return;
+                }
+            });
+        }
+
+        // Special case for the homepage
+        if (!directMatchFound && (currentPage === 'index.html' || currentPage === '' || fullPath === '/website/')) {
+            const homeLink = document.querySelector('.nav-links a[href="index.html"]');
+            if (homeLink) {
+                homeLink.classList.add('active');
+            }
+        }
+    });
     </script>
 </body>
 </html>
