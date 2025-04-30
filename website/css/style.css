@@ -92,12 +92,15 @@
     background-color: var(--primary-color);
     color: var(--white);
     padding: 12px 24px;
+    margin-bottom: 25px;
+    margin-left: 10px;
     border-radius: 50px;
     font-weight: 500;
     transition: var(--transition);
     border: none;
     cursor: pointer;
     text-align: center;
+    align-items: center;
   }
   
   .btn-primary:hover {
@@ -112,6 +115,7 @@
     background-color: transparent;
     color: var(--primary-color);
     padding: 12px 24px;
+    margin-bottom: 25px;
     border-radius: 50px;
     font-weight: 500;
     transition: var(--transition);
@@ -265,6 +269,68 @@ header .container {
     padding: 10px 0;
     border-bottom: 1px solid var(--border-color);
   }
+
+  /* Updated Mobile Menu Styles */
+.mobile-menu ul li.mobile-detailing-parent,
+.mobile-menu ul li.mobile-location-parent {
+    position: relative;
+}
+
+.mobile-menu ul li.mobile-detailing-parent > a,
+.mobile-menu ul li.mobile-location-parent > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-menu ul li.mobile-detailing-parent .fa-caret-down,
+.mobile-menu ul li.mobile-location-parent .fa-caret-down {
+    margin-left: 10px;
+}
+
+.mobile-detailing-dropdown,
+.mobile-location-dropdown {
+    display: none;
+    list-style: none;
+    padding-left: 20px;
+    background-color: var(--light-gray);
+}
+
+.mobile-detailing-dropdown li,
+.mobile-location-dropdown li {
+    margin-bottom: 10px;
+    border-bottom: none !important; /* Override default border */
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.mobile-detailing-dropdown li:last-child,
+.mobile-location-dropdown li:last-child {
+    margin-bottom: 0;
+}
+
+.mobile-detailing-dropdown li a,
+.mobile-location-dropdown li a {
+    color: var(--text-color);
+    display: block;
+    padding: 8px 0;
+    border-bottom: none !important; /* Override default border */
+}
+
+.mobile-detailing-dropdown li a:hover,
+.mobile-location-dropdown li a:hover {
+    color: var(--primary-color);
+}
+
+.mobile-detailing-parent.open .mobile-detailing-dropdown,
+.mobile-location-parent.open .mobile-location-dropdown {
+    display: block;
+}
+
+.mobile-detailing-parent.open .fa-caret-down,
+.mobile-location-parent.open .fa-caret-down {
+    transform: rotate(180deg);
+}
   
   .mobile-menu ul li a:hover,
   .mobile-menu ul li a.active {

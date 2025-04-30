@@ -394,45 +394,66 @@
 
     <script src="js/script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentPage = window.location.pathname.split('/').pop();
-            const navLinks = document.querySelectorAll('.nav-links a');
-            const detailingDropdownLinks = document.querySelectorAll('.detailing-dropdown-content a');
-            const detailingDropdown = document.querySelector('.detailing-dropdown > a');
-            const locationDropdownLinks = document.querySelectorAll('.location-dropdown-content a');
-            const locationDropdown = document.querySelector('.location-dropdown > a');
+        document.addEventListener('DOMContentLoaded', function () {
+        const currentPage = window.location.pathname.split('/').pop();
+        const fullPath = window.location.pathname; // Get the full path
+        const navLinks = document.querySelectorAll('.nav-links > li > a');
+        const detailingDropdown = document.querySelector('.detailing-dropdown > a');
+        const detailingDropdownLinks = document.querySelectorAll('.detailing-dropdown-content a');
+        const locationDropdown = document.querySelector('.location-dropdown > a');
+        const locationDropdownLinks = document.querySelectorAll('.location-dropdown-content a');
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                }
-            });
+        // Remove active class from all top-level links initially
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
 
-            detailingDropdownLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    if (detailingDropdown) {
-                        detailingDropdown.classList.add('active');
-                    }
-                }
-            });
+        // Function to check if a link's href matches the current page
+        const setActiveLink = (link) => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+                return true;
+            }
+            return false;
+        };
 
-            locationDropdownLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    if (locationDropdown) {
-                        locationDropdown.classList.add('active');
-                    }
-                }
-            });
+        let directMatchFound = false;
 
-            // Special case for the index page
-            if (currentPage === 'index.html' || currentPage === '') {
-                const homeLink = document.querySelector('.nav-links a[href="index.html"]');
-                if (homeLink) {
-                    homeLink.classList.add('active');
-                }
+        // Check active status for top-level links
+        navLinks.forEach(link => {
+            if (setActiveLink(link)) {
+                directMatchFound = true;
             }
         });
+
+        // Check and set active state for Detailing dropdown
+        if (detailingDropdown) {
+            detailingDropdownLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    detailingDropdown.classList.add('active');
+                    return;
+                }
+            });
+        }
+
+        // Check and set active state for Location dropdown
+        if (locationDropdown) {
+            locationDropdownLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    locationDropdown.classList.add('active');
+                    return;
+                }
+            });
+        }
+
+        // Special case for the homepage
+        if (!directMatchFound && (currentPage === 'index.html' || currentPage === '' || fullPath === '/website/')) {
+            const homeLink = document.querySelector('.nav-links a[href="index.html"]');
+            if (homeLink) {
+                homeLink.classList.add('active');
+            }
+        }
+    });
     </script>
 </body>
 </html>
