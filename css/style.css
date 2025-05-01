@@ -19,6 +19,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
   }
   
   body {
@@ -1319,6 +1320,13 @@ header .container {
 
   .pricing-card.featured:hover {
     transform: translateY(-5px);
+  }
+
+  .step-number {
+    width: 40px; /* Reduce the width */
+    height: 30px; /* Reduce the height */
+    font-size: 1rem; /* Reduce the font size */
+    margin-right: 15px; /* Reduce the right margin */
   }
 }
 
