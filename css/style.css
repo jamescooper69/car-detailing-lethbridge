@@ -1429,3 +1429,32 @@ header .container {
     background-color: var(--light-gray);
     color: var(--primary-color);
   }
+
+  /* New styles||||||||||||||||||||||||||||||||||||||||||| */
+  .phone-input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc; /* Example border, adjust as needed */
+    border-radius: 4px; /* Optional rounded corners */
+    overflow: hidden; /* To contain the flag and code */
+}
+
+.country-code {
+    background-color: #f0f0f0; /* Light background for the code */
+    padding: 8px 10px;
+    border-right: 1px solid #ccc; /* Separator */
+    display: flex;
+    align-items: center;
+}
+
+.flag-ca {
+    font-size: 1.2em; /* Adjust flag size */
+    margin-left: 5px;
+}
+
+.phone-input-wrapper input[type="tel"] {
+    border: none;
+    padding: 8px;
+    flex-grow: 1; /* Allows the input to take remaining space */
+    outline: none; /* Remove default focus outline */
+}
