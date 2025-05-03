@@ -428,6 +428,13 @@ header .container {
   color: var(--white);
 }
 
+@media (max-width: 768px) {
+  .hero-buttons .btn-primary {
+    margin-left: 0px;
+    margin-bottom: 0px;
+  }
+}
+
 .hero-image {
   display: none; /* Hide the image tag */
 }
