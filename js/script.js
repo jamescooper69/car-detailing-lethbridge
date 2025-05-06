@@ -144,7 +144,7 @@ if (serviceSelect && packagesGroup && packagesSelect) {
         packagesGroup.style.display = 'none'; // Hide the packages dropdown initially
 
         if (selectedService === 'interior') {
-            const interiorPackages = ['Interior Basic', 'Interior Premium', 'Interior Ultimate'];
+            const interiorPackages = ['Interior Standard', 'Interior Premium', 'Interior Gold'];
             interiorPackages.forEach(packageOption => {
                 const option = document.createElement('option');
                 option.value = packageOption.toLowerCase().replace(/ /g, '-'); // Create a machine-readable value
@@ -153,7 +153,7 @@ if (serviceSelect && packagesGroup && packagesSelect) {
             });
             packagesGroup.style.display = 'block'; // Show the packages dropdown for Interior
         } else if (selectedService === 'exterior') {
-            const exteriorPackages = ['Exterior Basic', 'Exterior Premium'];
+            const exteriorPackages = ['Exterior Standard', 'Exterior Gold'];
             exteriorPackages.forEach(packageOption => {
                 const option = document.createElement('option');
                 option.value = packageOption.toLowerCase().replace(/ /g, '-');
@@ -162,7 +162,7 @@ if (serviceSelect && packagesGroup && packagesSelect) {
             });
             packagesGroup.style.display = 'block'; // Show for Exterior
         } else if (selectedService === 'complete') {
-            const completePackages = ['Complete Basic', 'Complete Premium', 'Complete Ultimate'];
+            const completePackages = ['Complete Standard', 'Complete Premium', 'Complete Gold'];
             completePackages.forEach(packageOption => {
                 const option = document.createElement('option');
                 option.value = packageOption.toLowerCase().replace(/ /g, '-');
