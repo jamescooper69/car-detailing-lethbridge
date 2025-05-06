@@ -1465,3 +1465,42 @@ header .container {
     flex-grow: 1; /* Allows the input to take remaining space */
     outline: none; /* Remove default focus outline */
 }
+
+/* Add ons style extra(EDITED) */
+/* Style for the container of each addon option */
+#addons-container div {
+  display: flex; /* Use flexbox to align items in a row */
+  align-items: center; /* Vertically align items in the center */
+  margin-bottom: 8px; /* Add some spacing between addon options */
+}
+
+/* Style for the checkbox */
+#addons-container input[type="checkbox"] {
+  margin-right: 10px; /* Add some space between the checkbox and the label */
+  appearance: none; /* Remove default checkbox appearance */
+  -webkit-appearance: none; /* For Safari and Chrome */
+  -moz-appearance: none; /* For Firefox */
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  display: flex; /* Enable flexbox properties for the checkbox itself */
+  justify-content: center; /* Center the checkmark */
+  align-items: center;
+}
+
+/* Style for the checkmark/indicator when the checkbox is checked */
+#addons-container input[type="checkbox"]:checked::before {
+  content: '\2713'; /* Unicode character for a checkmark */
+  font-size: 20px;
+  font-weight: 900;
+  color: blue; /* Or any color you prefer */
+}
+
+/* Style for the label */
+#addons-container label {
+  font-size: 16px;
+  cursor: pointer;
+}

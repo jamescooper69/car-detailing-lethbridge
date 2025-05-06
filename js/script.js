@@ -130,28 +130,74 @@ if (yearElement) {
     yearElement.innerHTML = yearElement.innerHTML.replace('2025', currentYear);
 }
 
-// ===== Dynamic Packages Based on Service =====
+// ===== Dynamic Packages Based on Service (Modified for Add-ons) =====
 const serviceSelect = document.getElementById('service');
 const packagesGroup = document.getElementById('packages-group');
 const packagesSelect = document.getElementById('package');
+const addonsGroup = document.getElementById('addons-group');
+const addonsContainer = document.getElementById('addons-container');
 
-if (serviceSelect && packagesGroup && packagesSelect) {
+if (serviceSelect && packagesGroup && packagesSelect && addonsGroup && addonsContainer) {
     serviceSelect.addEventListener('change', () => {
         const selectedService = serviceSelect.value;
 
-        // Clear any existing options in the packages dropdown
+        // Clear existing package options
         packagesSelect.innerHTML = '<option value="">Select a Package</option>';
-        packagesGroup.style.display = 'none'; // Hide the packages dropdown initially
+        packagesGroup.style.display = 'none';
+
+        // Clear existing addon options
+        addonsContainer.innerHTML = '';
+        addonsGroup.style.display = 'none';
 
         if (selectedService === 'interior') {
             const interiorPackages = ['Interior Standard', 'Interior Premium', 'Interior Gold'];
             interiorPackages.forEach(packageOption => {
                 const option = document.createElement('option');
-                option.value = packageOption.toLowerCase().replace(/ /g, '-'); // Create a machine-readable value
+                option.value = packageOption.toLowerCase().replace(/ /g, '-');
                 option.textContent = packageOption;
                 packagesSelect.appendChild(option);
             });
-            packagesGroup.style.display = 'block'; // Show the packages dropdown for Interior
+            packagesGroup.style.display = 'block';
+
+            const interiorAddons = ['Headliner Shampoo', 'Pet Hair Removal', 'None'];
+            interiorAddons.forEach(addon => {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `addon-${addon.toLowerCase().replace(/ /g, '-')}`;
+                checkbox.name = 'addons'; // Use the same name for all addons
+                checkbox.value = addon.toLowerCase().replace(/ /g, '-');
+
+                const label = document.createElement('label');
+                label.htmlFor = `addon-${addon.toLowerCase().replace(/ /g, '-')}`;
+                label.textContent = addon;
+
+                const div = document.createElement('div');
+                div.appendChild(checkbox);
+                div.appendChild(label);
+                addonsContainer.appendChild(div);
+            });
+            addonsGroup.style.display = 'block';
+
+            // Handle the "None" checkbox logic for Interior
+            const noneCheckboxInterior = document.getElementById('addon-none');
+            const otherCheckboxesInterior = Array.from(addonsContainer.querySelectorAll('input[type="checkbox"]:not(#addon-none)'));
+
+            if (noneCheckboxInterior) {
+                noneCheckboxInterior.addEventListener('change', () => {
+                    if (noneCheckboxInterior.checked) {
+                        otherCheckboxesInterior.forEach(cb => cb.checked = false);
+                    }
+                });
+            }
+
+            otherCheckboxesInterior.forEach(cb => {
+                cb.addEventListener('change', () => {
+                    if (noneCheckboxInterior && noneCheckboxInterior.checked) {
+                        noneCheckboxInterior.checked = false;
+                    }
+                });
+            });
+
         } else if (selectedService === 'exterior') {
             const exteriorPackages = ['Exterior Standard', 'Exterior Gold'];
             exteriorPackages.forEach(packageOption => {
@@ -160,7 +206,47 @@ if (serviceSelect && packagesGroup && packagesSelect) {
                 option.textContent = packageOption;
                 packagesSelect.appendChild(option);
             });
-            packagesGroup.style.display = 'block'; // Show for Exterior
+            packagesGroup.style.display = 'block';
+
+            const exteriorAddons = ['Headlight Restoration', 'None'];
+            exteriorAddons.forEach(addon => {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `addon-${addon.toLowerCase().replace(/ /g, '-')}`;
+                checkbox.name = 'addons';
+                checkbox.value = addon.toLowerCase().replace(/ /g, '-');
+
+                const label = document.createElement('label');
+                label.htmlFor = `addon-${addon.toLowerCase().replace(/ /g, '-')}`;
+                label.textContent = addon;
+
+                const div = document.createElement('div');
+                div.appendChild(checkbox);
+                div.appendChild(label);
+                addonsContainer.appendChild(div);
+            });
+            addonsGroup.style.display = 'block';
+
+            // Handle the "None" checkbox logic for Exterior
+            const noneCheckboxExterior = document.getElementById('addon-none');
+            const otherCheckboxesExterior = Array.from(addonsContainer.querySelectorAll('input[type="checkbox"]:not(#addon-none)'));
+
+            if (noneCheckboxExterior) {
+                noneCheckboxExterior.addEventListener('change', () => {
+                    if (noneCheckboxExterior.checked) {
+                        otherCheckboxesExterior.forEach(cb => cb.checked = false);
+                    }
+                });
+            }
+
+            otherCheckboxesExterior.forEach(cb => {
+                cb.addEventListener('change', () => {
+                    if (noneCheckboxExterior && noneCheckboxExterior.checked) {
+                        noneCheckboxExterior.checked = false;
+                    }
+                });
+            });
+
         } else if (selectedService === 'complete') {
             const completePackages = ['Complete Standard', 'Complete Premium', 'Complete Gold'];
             completePackages.forEach(packageOption => {
@@ -169,7 +255,46 @@ if (serviceSelect && packagesGroup && packagesSelect) {
                 option.textContent = packageOption;
                 packagesSelect.appendChild(option);
             });
-            packagesGroup.style.display = 'block'; // Show for Complete
+            packagesGroup.style.display = 'block';
+
+            const completeAddons = ['Headliner Shampoo', 'Pet Hair Removal', 'Headlight Restoration', 'None'];
+            completeAddons.forEach(addon => {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `addon-${addon.toLowerCase().replace(/ /g, '-')}`;
+                checkbox.name = 'addons';
+                checkbox.value = addon.toLowerCase().replace(/ /g, '-');
+
+                const label = document.createElement('label');
+                label.htmlFor = `addon-${addon.toLowerCase().replace(/ /g, '-')}`;
+                label.textContent = addon;
+
+                const div = document.createElement('div');
+                div.appendChild(checkbox);
+                div.appendChild(label);
+                addonsContainer.appendChild(div);
+            });
+            addonsGroup.style.display = 'block';
+
+            // Handle the "None" checkbox logic for Complete
+            const noneCheckboxComplete = document.getElementById('addon-none');
+            const otherCheckboxesComplete = Array.from(addonsContainer.querySelectorAll('input[type="checkbox"]:not(#addon-none)'));
+
+            if (noneCheckboxComplete) {
+                noneCheckboxComplete.addEventListener('change', () => {
+                    if (noneCheckboxComplete.checked) {
+                        otherCheckboxesComplete.forEach(cb => cb.checked = false);
+                    }
+                });
+            }
+
+            otherCheckboxesComplete.forEach(cb => {
+                cb.addEventListener('change', () => {
+                    if (noneCheckboxComplete && noneCheckboxComplete.checked) {
+                        noneCheckboxComplete.checked = false;
+                    }
+                });
+            });
         }
     });
 }
