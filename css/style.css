@@ -395,9 +395,23 @@ header .container {
 }
 
 .hero-text h1 {
-  font-size: 3rem;
+  font-size: 3.7rem;
   margin-bottom: 20px;
   color: var(--primary-color);
+}
+
+/* Main home page heading smaller on small mobile screens */
+@media (max-width: 768px) {
+  .hero .container .hero-content .hero-text h1 {
+    font-size: 40px;
+    padding-bottom: 7px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero .container .hero-content .hero-text p {
+    padding-bottom: 7px;
+  }
 }
 
 .hero-text .subtitle,

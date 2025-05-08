@@ -10,6 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+   />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -96,7 +101,8 @@
             <div class="contact-content">
                 <div class="contact-form">
                     <h2>Book Your Detailing</h2>
-                    <form id="booking-form" action="https://formspree.io/f/mvgaavqq" method="POST">
+                    <!-- <form id="booking-form" action="https://formspree.io/f/mvgaavqq" method="POST"> -->
+                    <form id="booking-form" action="/submit-booking" method="POST"></form>
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" required>
@@ -107,10 +113,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <div class="phone-input-wrapper">
-                                <span class="country-code">+1 <i class="fa-brands fa-canadian-maple-leaf" style="color: red; margin-left: 5px;"></i></span>
                                 <input type="tel" id="phone" name="phone" required>
-                            </div>
                         </div>
                         <div class="form-group">
                             <label for="city">City</label>
@@ -173,6 +176,15 @@
                                 <option value="morning">Morning (8am - 12pm)</option>
                                 <option value="afternoon">Afternoon (12pm - 4pm)</option>
                                 <option value="evening">Evening (4pm - 6pm)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Service method</label>
+                            <select id="time" name="time" required>
+                                <option value="">Select a service method</option>
+                                <option value="morning">Mobile service (We come to your place)</option>
+                                <option value="afternoon">Pick & drop (We pick and drop your vehicle-no extra charges)</option>
+                                <option value="evening">Self drop (You drop and pickup your vehicle)</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -460,6 +472,152 @@
             }
         }
     });
+
+    const phoneInputField = document.querySelector("#phone");
+const phoneInputInstance = window.intlTelInput(phoneInputField, {
+  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+  onlyCountries: ["ca"],
+});
+
+const template = '+1 000-000-0000';
+const digitPositions = [3, 4, 5, 7, 8, 9, 11, 12, 13, 14]; // Indices of the zeros
+const maxDigits = digitPositions.length;
+
+phoneInputField.addEventListener('focus', () => {
+  // Do nothing specific on focus anymore, the current value will remain
+});
+
+phoneInputField.addEventListener('input', (event) => {
+  // Allow only digits
+  event.target.value = event.target.value.replace(/\D/g, '');
+  // Limit the number of digits
+  if (event.target.value.length > maxDigits) {
+    event.target.value = event.target.value.slice(0, maxDigits);
+  }
+});
+
+phoneInputField.addEventListener('blur', (event) => {
+  const digits = event.target.value;
+  let formattedNumber = '+1 ';
+  const templateParts = template.substring(3).split('-');
+  let digitIndex = 0;
+
+  if (digits.length === maxDigits) {
+    for (let i = 0; i < templateParts.length; i++) {
+      formattedNumber += digits.slice(digitIndex, digitIndex + templateParts[i].length);
+      digitIndex += templateParts[i].length;
+      if (i < templateParts.length - 1) {
+        formattedNumber += '-';
+      }
+    }
+    event.target.value = formattedNumber;
+  } else {
+    event.target.value = digits; // Keep the unformatted digits if not exactly 10
+  }
+});
+
+phoneInputField.removeEventListener('click', () => {}); // No specific click behavior needed anymore
+phoneInputField.removeEventListener('keydown', () => {}); // Ensure no interference
+
+document.addEventListener('DOMContentLoaded', function() {
+  const bookingForm = document.getElementById('booking-form');
+  const confirmationMessageDiv = document.getElementById('confirmation-message');
+
+  bookingForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const name = document.getElementById('name').value;
+    const address = document.getElementById('address').value;
+    const vehicle = document.getElementById('vehicle').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const specialInstructions = document.getElementById('message').value;
+    const service = document.getElementById('service').value;
+    const city = document.getElementById('city').value;
+    const packageSelected = document.getElementById('package') ? document.getElementById('package').value : 'Not Selected'; // Handle optional package
+    const addonsContainer = document.getElementById('addons-container');
+    let addons = [];
+    if (addonsContainer) {
+      const checkedAddons = addonsContainer.querySelectorAll('input[type="checkbox"]:checked');
+      checkedAddons.forEach(addon => addons.push(addon.value));
+    }
+    const serviceMethod = document.querySelector('#time[name="time"]').value; // Correctly target service method
+
+    let confirmationText = `Dear ${name}, your booking for ${service} in ${city} is confirmed. `;
+    confirmationText += `Our detailer will arrive at your address: ${address} with your vehicle (${vehicle}) on ${date} during the ${time}. `;
+
+    if (specialInstructions) {
+      confirmationText += `Special instructions provided: ${specialInstructions}. `;
+    }
+
+    if (service === 'complete' && packageSelected) {
+      confirmationText += `You have selected the ${packageSelected} package. `;
+    }
+
+    if (addons.length > 0) {
+      confirmationText += `Additional services requested: ${addons.join(', ')}. `;
+    }
+
+    confirmationText += `The service method selected is: ${serviceMethod}. We will also send a confirmation to your provided email and phone number shortly.`;
+
+    confirmationMessageDiv.textContent = confirmationText;
+    confirmationMessageDiv.style.display = 'block';
+    bookingForm.reset(); // Optionally reset the form after showing confirmation
+  });
+
+  // --- JavaScript for Ad-ons Checkboxes ---
+  const addonsGroup = document.getElementById('addons-group');
+  const addonsContainer = document.getElementById('addons-container');
+  const addonsData = ["Pet hair removal", "Headliner shampoo", "Odor elimination", "Engine bay cleaning", "Paint correction"]; // Example ad-ons
+
+  if (addonsContainer && addonsGroup) {
+    addonsData.forEach(addon => {
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = addon.toLowerCase().replace(/ /g, '-');
+      checkbox.name = 'addons';
+      checkbox.value = addon;
+
+      const label = document.createElement('label');
+      label.htmlFor = checkbox.id;
+      label.textContent = addon;
+
+      const div = document.createElement('div');
+      div.appendChild(checkbox);
+      div.appendChild(label);
+      addonsContainer.appendChild(div);
+    });
+  }
+
+  // --- JavaScript to dynamically populate Packages based on Service Type ---
+  const serviceSelect = document.getElementById('service');
+  const packagesGroup = document.getElementById('packages-group');
+  const packageSelect = document.getElementById('package');
+
+  const servicePackages = {
+    'interior': ['Basic Interior Clean', 'Premium Interior Detail', 'Interior Protection Package'],
+    'exterior': ['Basic Wash & Wax', 'Premium Exterior Detail', 'Paint Sealant Application'],
+    'complete': ['Full Interior & Exterior Detail', 'Ultimate Detail Package']
+  };
+
+  if (serviceSelect && packagesGroup && packageSelect) {
+    serviceSelect.addEventListener('change', function() {
+      const selectedService = this.value;
+      packageSelect.innerHTML = '<option value="">Select a Package</option>'; // Reset options
+      if (servicePackages[selectedService]) {
+        packagesGroup.style.display = 'block';
+        servicePackages[selectedService].forEach(packageOption => {
+          const option = document.createElement('option');
+          option.value = packageOption.toLowerCase().replace(/ /g, '-');
+          option.textContent = packageOption;
+          packageSelect.appendChild(option);
+        });
+      } else {
+        packagesGroup.style.display = 'none';
+      }
+    });
+  }
+});
     </script>
 </body>
 </html>
