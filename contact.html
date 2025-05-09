@@ -15,6 +15,7 @@
      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
    />
    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+   <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -102,7 +103,7 @@
                 <div class="contact-form">
                     <h2>Book Your Detailing</h2>
                     <!-- <form id="booking-form" action="https://formspree.io/f/mvgaavqq" method="POST"> -->
-                    <form id="booking-form" action="/submit-booking" method="POST"></form>
+                        <form action="https://api.web3forms.com/submit" method="POST">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" required>
@@ -410,6 +411,7 @@
         </div>
     </footer>
 
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="js/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {

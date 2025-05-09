@@ -248,7 +248,7 @@ if (serviceSelect && packagesGroup && packagesSelect && addonsGroup && addonsCon
             });
 
         } else if (selectedService === 'complete') {
-            const completePackages = ['Complete Standard', 'Complete Premium', 'Complete Gold'];
+            const completePackages = ['Complete Premium', 'Complete Gold'];
             completePackages.forEach(packageOption => {
                 const option = document.createElement('option');
                 option.value = packageOption.toLowerCase().replace(/ /g, '-');
@@ -304,47 +304,62 @@ const bookingForm = document.getElementById('booking-form');
 const confirmationMessageDiv = document.getElementById('confirmation-message');
 
 if (bookingForm && confirmationMessageDiv) {
-    bookingForm.addEventListener('submit', async (e) => {
+    bookingForm.addEventListener('submit', function(e) {
         e.preventDefault(); // Prevent the default form submission
 
         const formData = new FormData(bookingForm);
+        const userEmail = formData.get('email'); // Get the user's email from the form
 
-        try {
-            const response = await fetch(bookingForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json' // Request JSON response
-                }
-            });
-
-            if (response.ok) {
-                // Form submission was successful
-                confirmationMessageDiv.innerHTML = '<span style="color: green;"><i class="fas fa-check"></i> Booking confirmed</span>';
-                confirmationMessageDiv.style.display = 'block';
-
-                // Optionally reset the form after a short delay
-                setTimeout(() => {
-                    bookingForm.reset();
-                    confirmationMessageDiv.style.display = 'none';
-                }, 10000); // Adjust the display time as needed
-            } else {
-                // Form submission failed
-                const error = await response.json();
-                console.error("Form submission error:", error);
-                confirmationMessageDiv.innerHTML = '<span style="color: red;">Oops! Something went wrong. Please try again.</span>';
-                confirmationMessageDiv.style.display = 'block';
-                setTimeout(() => {
-                    confirmationMessageDiv.style.display = 'none';
-                }, 3000);
-            }
-        } catch (error) {
-            console.error("Network error:", error);
-            confirmationMessageDiv.innerHTML = '<span style="color: red;">Network error. Please check your connection.</span>';
+        if (!userEmail) {
+            confirmationMessageDiv.innerHTML = '<span style="color: red;">Please enter your email address.</span>';
             confirmationMessageDiv.style.display = 'block';
             setTimeout(() => {
                 confirmationMessageDiv.style.display = 'none';
             }, 3000);
+            return;
         }
+
+        const emailBody = `
+            <p>Thank you for your booking!</p>
+            <p>Here are the details you submitted:</p>
+            <ul>
+                <li>Name: ${formData.get('name')}</li>
+                <li>Email: ${formData.get('email')}</li>
+                <li>Phone: ${formData.get('phone')}</li>
+                <li>City: ${formData.get('city')}</li>
+                <li>Address: ${formData.get('address')}</li>
+                <li>Service: ${formData.get('service')}</li>
+                <li>Package: ${formData.get('package') || 'Not Selected'}</li>
+                <li>Add-ons: ${formData.get('addons') ? Array.from(formData.getAll('addons')).join(', ') : 'None'}</li>
+                <li>Vehicle: ${formData.get('vehicle')}</li>
+                <li>Date: ${formData.get('date')}</li>
+                <li>Time: ${formData.get('time')}</li>
+                <li>Service Method: ${formData.get('time')}</li>
+                <li>Special Instructions: ${formData.get('message')}</li>
+            </ul>
+            <p>We will contact you shortly to confirm your booking.</p>
+        `;
+
+        SMTP.send({
+            SecureToken: "C973D7AD-F097-4B95-91F4-40ABC5567812", // Replace with your SecureToken (get one from smtpjs.com)
+            To: userEmail,
+            From: "bridgedetailings@gmail.com", // Replace with your company's email address
+            Subject: "Your Booking Confirmation",
+            Body: emailBody
+        }).then(function(message) {
+            confirmationMessageDiv.innerHTML = '<span style="color: green;"><i class="fas fa-check"></i> Booking confirmation sent to your email!</span>';
+            confirmationMessageDiv.style.display = 'block';
+            setTimeout(() => {
+                bookingForm.reset();
+                confirmationMessageDiv.style.display = 'none';
+            }, 15000);
+        }).catch(function(error) {
+            console.error("Email sending error:", error);
+            confirmationMessageDiv.innerHTML = '<span style="color: red;">Failed to send confirmation email. Please try again or contact us directly.</span>';
+            confirmationMessageDiv.style.display = 'block';
+            setTimeout(() => {
+                confirmationMessageDiv.style.display = 'none';
+            }, 15000);
+        });
     });
 }
