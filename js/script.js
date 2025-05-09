@@ -321,7 +321,7 @@ if (bookingForm && confirmationMessageDiv) {
         });
 
         // Get the Web App URL you deployed
-        const webAppUrl = 'https://script.google.com/macros/s/AKfycbxpVHjOCsRsTWYKH87i9bS93led-68PtAGXy79hB44G1PM40lUq__3LqFyOIpnueZO-CA/exec'; // Replace with your actual Web App URL
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbxFJQqlFhigl4U_rvzudJqhUoIHt-2iw1Ezh1ZUsMR0p1UNC1toDHycZvXUflGkq-03Eg/exec'; // Replace with your actual Web App URL
 
         fetch(webAppUrl, {
             method: 'POST',
