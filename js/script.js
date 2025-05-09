@@ -299,67 +299,52 @@ if (serviceSelect && packagesGroup && packagesSelect && addonsGroup && addonsCon
     });
 }
 
-// ===== Form Submission with Inline Confirmation =====
+// ===== Form Submission to Google Apps Script =====
 const bookingForm = document.getElementById('booking-form');
 const confirmationMessageDiv = document.getElementById('confirmation-message');
 
 if (bookingForm && confirmationMessageDiv) {
-    bookingForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent the default form submission
+    bookingForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
 
         const formData = new FormData(bookingForm);
-        const userEmail = formData.get('email'); // Get the user's email from the form
+        const formDataJSON = {};
+        formData.forEach((value, key) => {
+            if (formDataJSON[key]) {
+                if (!Array.isArray(formDataJSON[key])) {
+                    formDataJSON[key] = [formDataJSON[key]];
+                }
+                formDataJSON[key].push(value);
+            } else {
+                formDataJSON[key] = value;
+            }
+        });
 
-        if (!userEmail) {
-            confirmationMessageDiv.innerHTML = '<span style="color: red;">Please enter your email address.</span>';
-            confirmationMessageDiv.style.display = 'block';
-            setTimeout(() => {
-                confirmationMessageDiv.style.display = 'none';
-            }, 3000);
-            return;
-        }
+        // Get the Web App URL you deployed
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbxpVHjOCsRsTWYKH87i9bS93led-68PtAGXy79hB44G1PM40lUq__3LqFyOIpnueZO-CA/exec'; // Replace with your actual Web App URL
 
-        const emailBody = `
-            <p>Thank you for your booking!</p>
-            <p>Here are the details you submitted:</p>
-            <ul>
-                <li>Name: ${formData.get('name')}</li>
-                <li>Email: ${formData.get('email')}</li>
-                <li>Phone: ${formData.get('phone')}</li>
-                <li>City: ${formData.get('city')}</li>
-                <li>Address: ${formData.get('address')}</li>
-                <li>Service: ${formData.get('service')}</li>
-                <li>Package: ${formData.get('package') || 'Not Selected'}</li>
-                <li>Add-ons: ${formData.get('addons') ? Array.from(formData.getAll('addons')).join(', ') : 'None'}</li>
-                <li>Vehicle: ${formData.get('vehicle')}</li>
-                <li>Date: ${formData.get('date')}</li>
-                <li>Time: ${formData.get('time')}</li>
-                <li>Service Method: ${formData.get('time')}</li>
-                <li>Special Instructions: ${formData.get('message')}</li>
-            </ul>
-            <p>We will contact you shortly to confirm your booking.</p>
-        `;
-
-        SMTP.send({
-            SecureToken: "C973D7AD-F097-4B95-91F4-40ABC5567812", // Replace with your SecureToken (get one from smtpjs.com)
-            To: userEmail,
-            From: "bridgedetailings@gmail.com", // Replace with your company's email address
-            Subject: "Your Booking Confirmation",
-            Body: emailBody
-        }).then(function(message) {
-            confirmationMessageDiv.innerHTML = '<span style="color: green;"><i class="fas fa-check"></i> Booking confirmation sent to your email!</span>';
-            confirmationMessageDiv.style.display = 'block';
-            setTimeout(() => {
+        fetch(webAppUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formDataJSON)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.result === 'success') {
+                confirmationMessageDiv.textContent = data.message;
+                confirmationMessageDiv.style.display = 'block';
                 bookingForm.reset();
-                confirmationMessageDiv.style.display = 'none';
-            }, 15000);
-        }).catch(function(error) {
-            console.error("Email sending error:", error);
-            confirmationMessageDiv.innerHTML = '<span style="color: red;">Failed to send confirmation email. Please try again or contact us directly.</span>';
+            } else {
+                confirmationMessageDiv.textContent = 'Failed to submit booking. Please try again.';
+                confirmationMessageDiv.style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Error submitting form:', error);
+            confirmationMessageDiv.textContent = 'An error occurred. Please try again later.';
             confirmationMessageDiv.style.display = 'block';
-            setTimeout(() => {
-                confirmationMessageDiv.style.display = 'none';
-            }, 15000);
         });
     });
 }
