@@ -1,0 +1,4 @@
+node_modules
+bridge-mailer/node_modules
+.env
+bridge-mailer/.env
