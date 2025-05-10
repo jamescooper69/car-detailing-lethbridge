@@ -299,13 +299,12 @@ if (serviceSelect && packagesGroup && packagesSelect && addonsGroup && addonsCon
     });
 }
 
-// ===== Form Submission to Google Apps Script =====
-const bookingForm = document.getElementById('booking-form');
-const confirmationMessageDiv = document.getElementById('confirmation-message');
+document.addEventListener('DOMContentLoaded', function() {
+    const bookingForm = document.getElementById('booking-form');
+    const confirmationMessageDiv = document.getElementById('confirmation-message');
 
-if (bookingForm && confirmationMessageDiv) {
     bookingForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault();
 
         const formData = new FormData(bookingForm);
         const formDataJSON = {};
@@ -320,10 +319,9 @@ if (bookingForm && confirmationMessageDiv) {
             }
         });
 
-        // Get the Web App URL you deployed
-        const webAppUrl = 'https://script.google.com/macros/s/AKfycbxFJQqlFhigl4U_rvzudJqhUoIHt-2iw1Ezh1ZUsMR0p1UNC1toDHycZvXUflGkq-03Eg/exec'; // Replace with your actual Web App URL
+        const backendApiUrl = 'https://bug-free-cod-vpw6v4gwp9hwx55-5000.app.github.dev/api/book';
 
-        fetch(webAppUrl, {
+        fetch(backendApiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -332,19 +330,31 @@ if (bookingForm && confirmationMessageDiv) {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.result === 'success') {
-                confirmationMessageDiv.textContent = data.message;
-                confirmationMessageDiv.style.display = 'block';
+            confirmationMessageDiv.style.display = 'block'; // Make sure the confirmation div is visible
+
+            if (data.msg) {
+                confirmationMessageDiv.innerHTML = '<span style="color: green;">✔️</span> Booking submitted successfully! Please check your email for confirmation.';
                 bookingForm.reset();
+            } else if (data.error) {
+                confirmationMessageDiv.textContent = data.error;
+                confirmationMessageDiv.style.color = 'red'; // Optionally style error messages
             } else {
-                confirmationMessageDiv.textContent = 'Failed to submit booking. Please try again.';
-                confirmationMessageDiv.style.display = 'block';
+                confirmationMessageDiv.innerHTML = '<span style="color: green;">✔️</span> Booking submitted successfully! Please check your email for confirmation.';
+                bookingForm.reset();
             }
+
+            // Optional: Hide the confirmation message after a few seconds
+            setTimeout(() => {
+                confirmationMessageDiv.style.display = 'none';
+                confirmationMessageDiv.innerHTML = ''; // Clear the message for the next submission
+                confirmationMessageDiv.style.color = ''; // Reset text color
+            }, 5000); // Adjust the time (in milliseconds) as needed
         })
         .catch(error => {
-            console.error('Error submitting form:', error);
+            console.error('Error submitting booking:', error);
             confirmationMessageDiv.textContent = 'An error occurred. Please try again later.';
             confirmationMessageDiv.style.display = 'block';
+            confirmationMessageDiv.style.color = 'red'; // Style error messages
         });
     });
-}
+});
