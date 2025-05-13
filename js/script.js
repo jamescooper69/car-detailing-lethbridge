@@ -319,7 +319,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        const backendApiUrl = 'https://bug-free-cod-vpw6v4gwp9hwx55-5000.app.github.dev/api/book';
+        // UPDATE THE BACKEND API URL HERE
+        const backendApiUrl = 'https://bridge-mailer-qz05o6g0j-jamescooper69s-projects.vercel.app/api/book';
 
         fetch(backendApiUrl, {
             method: 'POST',
@@ -333,13 +334,13 @@ document.addEventListener('DOMContentLoaded', function() {
             confirmationMessageDiv.style.display = 'block'; // Make sure the confirmation div is visible
 
             if (data.msg) {
-                confirmationMessageDiv.innerHTML = '<span style="color: green;">✔️</span> Booking submitted successfully! Please check your email for confirmation.';
+                confirmationMessageDiv.innerHTML = '<span style="color: green;">✔️</span> Booking submitted successfully! Please check your email for confirmation. Please check spam folder. Thanks!';
                 bookingForm.reset();
             } else if (data.error) {
                 confirmationMessageDiv.textContent = data.error;
                 confirmationMessageDiv.style.color = 'red'; // Optionally style error messages
             } else {
-                confirmationMessageDiv.innerHTML = '<span style="color: green;">✔️</span> Booking submitted successfully! Please check your email for confirmation.';
+                confirmationMessageDiv.innerHTML = '<span style="color: green;">✔️</span> Booking submitted successfully! Please check your email for confirmation. Please check spam folder. Thanks!';
                 bookingForm.reset();
             }
 
@@ -348,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 confirmationMessageDiv.style.display = 'none';
                 confirmationMessageDiv.innerHTML = ''; // Clear the message for the next submission
                 confirmationMessageDiv.style.color = ''; // Reset text color
-            }, 5000); // Adjust the time (in milliseconds) as needed
+            }, 10000); // Adjust the time (in milliseconds) as needed
         })
         .catch(error => {
             console.error('Error submitting booking:', error);
@@ -358,5 +359,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-// Testing a new commit, hopefully it will work
