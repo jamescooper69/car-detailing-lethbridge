@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // UPDATE THE BACKEND API URL HERE
-        const backendApiUrl = 'https://bridge-mailer-qz05o6g0j-jamescooper69s-projects.vercel.app/api/book';
+        const backendApiUrl = 'https://bridge-mailer-m51ior6cm-jamescooper69s-projects.vercel.app/api/book';
 
         fetch(backendApiUrl, {
             method: 'POST',
