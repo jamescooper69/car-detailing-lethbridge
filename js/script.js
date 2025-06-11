@@ -299,63 +299,57 @@ if (serviceSelect && packagesGroup && packagesSelect && addonsGroup && addonsCon
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const bookingForm = document.getElementById('booking-form');
-    const confirmationMessageDiv = document.getElementById('confirmation-message');
+// document.addEventListener('DOMContentLoaded', function () {
+//     const bookingForm = document.getElementById('booking-form');
+//     const confirmationMessageDiv = document.getElementById('confirmation-message');
 
-    bookingForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+//     bookingForm.addEventListener('submit', function (event) {
+//         event.preventDefault();
 
-        const formData = new FormData(bookingForm);
-        const formDataJSON = {};
-        formData.forEach((value, key) => {
-            if (formDataJSON[key]) {
-                if (!Array.isArray(formDataJSON[key])) {
-                    formDataJSON[key] = [formDataJSON[key]];
-                }
-                formDataJSON[key].push(value);
-            } else {
-                formDataJSON[key] = value;
-            }
-        });
+//         const formData = new FormData(bookingForm);
+//         const formDataJSON = {};
+//         formData.forEach((value, key) => {
+//             if (formDataJSON[key]) {
+//                 if (!Array.isArray(formDataJSON[key])) {
+//                     formDataJSON[key] = [formDataJSON[key]];
+//                 }
+//                 formDataJSON[key].push(value);
+//             } else {
+//                 formDataJSON[key] = value;
+//             }
+//         });
 
-        // UPDATE THE BACKEND API URL HERE
-        const backendApiUrl = 'https://bridge-mailer-7ztoku00t-jamescooper69s-projects.vercel.app/api/book';
+//         // Replace this with your Google Apps Script Web App URL
+//         const backendApiUrl = 'https://script.google.com/macros/s/AKfycbyzzIB9W3yxxGhzro42E1OxMG1o_38GFYzBDfpkp248O798h8f6QMNwYtH1dIN_jozOrQ/exec';
 
-        fetch(backendApiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formDataJSON)
-        })
-        .then(response => response.json())
-        .then(data => {
-            confirmationMessageDiv.style.display = 'block'; // Make sure the confirmation div is visible
+//         fetch(backendApiUrl, {
+//             method: 'POST',
+//             body: JSON.stringify(formDataJSON)
+//         })
+//         .then(response => response.text())  // Use .text() instead of .json()
+//         .then(result => {
+//             if (result.toLowerCase().includes('success')) {
+//                 confirmationMessageDiv.innerHTML = '✅Booking submitted successfully! An email is sent to you!';
+//                 confirmationMessageDiv.style.color = 'green';
+//                 confirmationMessageDiv.style.display = 'block';
+//                 bookingForm.reset();
+//             } else {
+//                 confirmationMessageDiv.textContent = 'Something went wrong. Please try again.';
+//                 confirmationMessageDiv.style.color = 'red';
+//                 confirmationMessageDiv.style.display = 'block';
+//             }
 
-            if (data.msg) {
-                confirmationMessageDiv.innerHTML = '<span style="color: green;">✔️</span> Booking submitted successfully! Please check your email for confirmation. Please check spam folder. Thanks!';
-                bookingForm.reset();
-            } else if (data.error) {
-                confirmationMessageDiv.textContent = data.error;
-                confirmationMessageDiv.style.color = 'red'; // Optionally style error messages
-            } else {
-                confirmationMessageDiv.innerHTML = '<span style="color: green;">✔️</span> Booking submitted successfully! Please check your email for confirmation. Please check spam folder. Thanks!';
-                bookingForm.reset();
-            }
-
-            // Optional: Hide the confirmation message after a few seconds
-            setTimeout(() => {
-                confirmationMessageDiv.style.display = 'none';
-                confirmationMessageDiv.innerHTML = ''; // Clear the message for the next submission
-                confirmationMessageDiv.style.color = ''; // Reset text color
-            }, 10000); // Adjust the time (in milliseconds) as needed
-        })
-        .catch(error => {
-            console.error('Error submitting booking:', error);
-            confirmationMessageDiv.textContent = 'An error occurred. Please try again later.';
-            confirmationMessageDiv.style.display = 'block';
-            confirmationMessageDiv.style.color = 'red'; // Style error messages
-        });
-    });
-});
+//             setTimeout(() => {
+//                 confirmationMessageDiv.style.display = 'none';
+//                 confirmationMessageDiv.innerHTML = '';
+//                 confirmationMessageDiv.style.color = '';
+//             }, 10000);
+//         })
+//         .catch(error => {
+//             console.error('Error submitting booking:', error);
+//             confirmationMessageDiv.textContent = 'An error occurred. Please try again later.';
+//             confirmationMessageDiv.style.color = 'red';
+//             confirmationMessageDiv.style.display = 'block';
+//         });
+//     });
+// });
