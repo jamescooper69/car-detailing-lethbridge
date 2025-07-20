@@ -236,7 +236,8 @@
                                 <h3>Service Areas</h3>
                                 <p>Lethbridge Alberta, Canada <br>Raymond Alberta, Canada <br>Coaldale Alberta, Canada
                                     <br> Coalhurst Alberta, Canada <br>Picture Butte Alberta, Canada <br>Taber Alberta,
-                                    Canada</p>
+                                    Canada
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -406,102 +407,41 @@
                 }
             }
 
-            // bookingForm.addEventListener('submit', function (event) {
-            //     event.preventDefault(); // Prevent the default form submission
+            // Booking functionality
+            document.getElementById("booking-form").addEventListener("submit", function (e) {
+                e.preventDefault();
 
-            //     // Show a "Processing..." message immediately
-            //     confirmationMessageDiv.style.display = 'block';
-            //     confirmationMessageDiv.innerHTML = '<span style="color: orange;">⏳</span> Processing your booking...';
-            //     confirmationMessageDiv.style.color = 'orange';
+                const data = {
+                    name: document.getElementById("name").value,
+                    email: document.getElementById("email").value,
+                    phone: document.getElementById("phone").value,
+                    city: document.getElementById("city").value,
+                    address: document.getElementById("address").value,
+                    service: document.getElementById("service").value,
+                    package: document.getElementById("package").value,
+                    addons: Array.from(document.querySelectorAll('#addons-container input[type="checkbox"]:checked')).map(el => el.value),
+                    vehicle: document.getElementById("vehicle").value,
+                    date: document.getElementById("date").value,
+                    time: document.getElementById("time").value,
+                    serviceMethod: document.getElementById("serviceMethod").value,
+                    message: document.getElementById("message").value
+                };
 
-            //     const formData = new FormData(bookingForm);
-            //     const formDataJSON = {};
-            //     formData.forEach((value, key) => {
-            //         formDataJSON[key] = value; // Directly assign value
-            //     });
-
-            //     // UPDATE THE BACKEND API URL HERE
-            //     const backendApiUrl = 'https://bridge-mailer-7zcvmhuly-jamescooper69s-projects.vercel.app/api/book';
-
-            //     fetch(backendApiUrl, {
-            //         method: 'POST',
-            //         headers: {
-            //             'Content-Type': 'application/json'
-            //         },
-            //         body: JSON.stringify(formDataJSON)
-            //     })
-            //         .then(response => response.json())
-            //         .then(data => {
-            //             // Clear the "Processing..." message
-            //             confirmationMessageDiv.innerHTML = '';
-            //             confirmationMessageDiv.style.color = '';
-
-            //             confirmationMessageDiv.style.display = 'block'; // Make sure the confirmation div is visible
-
-            //             if (data.msg) {
-            //                 confirmationMessageDiv.innerHTML = '<span style="color: green;">✔️</span> Booking submitted successfully! Please check your email for confirmation. Please check spam folder. Thanks!';
-            //                 bookingForm.reset();
-            //             } else if (data.error) {
-            //                 confirmationMessageDiv.textContent = data.error;
-            //                 confirmationMessageDiv.style.color = 'red'; // Optionally style error messages
-            //             } else {
-            //                 confirmationMessageDiv.innerHTML = '<span style="color: green;">✔️</span> Booking submitted successfully! Please check your email for confirmation. Please check spam folder. Thanks!';
-            //                 bookingForm.reset();
-            //             }
-
-            //             // Optional: Hide the confirmation message after a few seconds
-            //             setTimeout(() => {
-            //                 confirmationMessageDiv.style.display = 'none';
-            //                 confirmationMessageDiv.innerHTML = ''; // Clear the message for the next submission
-            //                 confirmationMessageDiv.style.color = ''; // Reset text color
-            //             }, 10000); // Adjust the time (in milliseconds) as needed
-            //         })
-            //         .catch(error => {
-            //             // Clear the "Processing..." message
-            //             confirmationMessageDiv.innerHTML = '';
-            //             confirmationMessageDiv.style.color = '';
-
-            //             console.error('Error submitting booking:', error);
-            //             confirmationMessageDiv.textContent = 'An error occurred. Please try again later.';
-            //             confirmationMessageDiv.style.display = 'block';
-            //             confirmationMessageDiv.style.color = 'red'; // Style error messages
-            //         });
-            // });
-
-            document.getElementById("booking-form").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const data = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value,
-    city: document.getElementById("city").value,
-    address: document.getElementById("address").value,
-    service: document.getElementById("service").value,
-    package: document.getElementById("package").value,
-    addons: Array.from(document.querySelectorAll('#addons-container input[type="checkbox"]:checked')).map(el => el.value),
-    vehicle: document.getElementById("vehicle").value,
-    date: document.getElementById("date").value,
-    time: document.getElementById("time").value,
-    serviceMethod: document.getElementById("serviceMethod").value,
-    message: document.getElementById("message").value
-  };
-
-  fetch("https://script.google.com/macros/s/AKfycbyzzIB9W3yxxGhzro42E1OxMG1o_38GFYzBDfpkp248O798h8f6QMNwYtH1dIN_jozOrQ/exec", {
-    method: "POST",
-    body: JSON.stringify(data)
-  })
-  .then(res => res.text())
-  .then(result => {
-    document.getElementById("confirmation-message").style.display = "block";
-    document.getElementById("confirmation-message").innerText = "✅Booking submitted successfully! An email is sent to you!";
-    document.getElementById("booking-form").reset();
-  })
-  .catch(err => {
-    alert("Something went wrong. Please try again.");
-    console.error(err);
-  });
-});
+                fetch("https://script.google.com/macros/s/AKfycbwat_PpSz4NinK59uCUms0ahG57dJZZH6wiklVdQKbciQ3xoD9NSA7S8RxvWRldBJE9vw/exec", {
+                    method: "POST",
+                    body: JSON.stringify(data)
+                })
+                    .then(res => res.text())
+                    .then(result => {
+                        document.getElementById("confirmation-message").style.display = "block";
+                        document.getElementById("confirmation-message").innerText = "✅Booking submitted successfully! An email is sent to you!";
+                        document.getElementById("booking-form").reset();
+                    })
+                    .catch(err => {
+                        alert("Something went wrong. Please try again.");
+                        console.error(err);
+                    });
+            });
 
             if (addonsContainer && addonsGroup) {
                 addonsData.forEach(addon => {
@@ -541,6 +481,7 @@
             }
         });
 
+        // Phone number functionality in input field
         const phoneInputField = document.querySelector("#phone");
         const phoneInputInstance = window.intlTelInput(phoneInputField, {
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
