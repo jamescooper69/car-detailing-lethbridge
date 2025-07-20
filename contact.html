@@ -36,6 +36,7 @@
                             <a href="interior-detailing.html">Interior Detailing</a>
                             <a href="exterior-detailing.html">Exterior Detailing</a>
                             <a href="complete-auto-detailing.html">Complete Auto Detailing</a>
+                            <a href="tinting.html">Tinting</a>
                         </div>
                     </li>
                     <li class="dropdown location-dropdown">
@@ -138,6 +139,7 @@
                                 <option value="interior">Interior Detailing</option>
                                 <option value="exterior">Exterior Detailing</option>
                                 <option value="complete">Complete Auto Detailing</option>
+                                <option value="complete">Tinting</option>
                             </select>
                         </div>
                         <div class="form-group" id="packages-group" style="display: none;">
@@ -164,9 +166,9 @@
                             <label for="time">Preferred Time</label>
                             <select id="time" name="time" required>
                                 <option value="">Select a Time</option>
-                                <option value="morning">Morning (8am - 12pm)</option>
-                                <option value="afternoon">Afternoon (12pm - 4pm)</option>
-                                <option value="evening">Evening (4pm - 6pm)</option>
+                                <option value="morning">Morning (9am)</option>
+                                <option value="afternoon">Afternoon (2pm)</option>
+                                <option value="evening">Evening (5pm)</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -223,9 +225,7 @@
                             </div>
                             <div class="contact-text">
                                 <h3>Hours</h3>
-                                <p>Monday - Friday: 8am - 6pm</p>
-                                <p>Saturday: 9am - 4pm</p>
-                                <p>Sunday: Closed</p>
+                                <p>Monday - Sunday: 9am - 7pm</p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -330,7 +330,6 @@
             </div>
         </div>
     </footer>
-
     <script src="js/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -345,7 +344,7 @@
             const confirmationMessageDiv = document.getElementById('confirmation-message');
             const addonsGroup = document.getElementById('addons-group');
             const addonsContainer = document.getElementById('addons-container');
-            const addonsData = ["Pet hair removal", "Headliner shampoo", "Odor elimination", "Engine bay cleaning", "Paint correction"]; // Example ad-ons
+            const addonsData = ["Pet hair removal", "Fabric Seats shampoo", "Headliner shampoo", "Odor elimination", "Engine bay cleaning"]; // Example ad-ons
             const serviceSelect = document.getElementById('service');
             const packagesGroup = document.getElementById('packages-group');
             const packageSelect = document.getElementById('package');
