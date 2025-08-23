@@ -353,9 +353,29 @@
             const servicePackages = {
                 'interior': ['Interior Standard', 'Interior Premium', 'Interior Gold'],
                 'exterior': ['Exterior Standard', 'Exterior Gold'],
-                'complete': ['Complete Premium', 'Complete Gold'],
-                'tinting':['coming soon']
+                'complete': ['Complete Premium', 'Complete Gold']
             };
+
+            const serviceMethodSelect = document.getElementById('serviceMethod');
+            const mobileServiceOption = serviceMethodSelect.querySelector('option[value="mobile"]');
+
+            if (serviceSelect && serviceMethodSelect && mobileServiceOption) {
+                serviceSelect.addEventListener('change', function () {
+                    if (this.value === 'tinting') {
+                        // If "Tinting" is selected, hide the mobile service option
+                        mobileServiceOption.style.display = 'none';
+
+                        // If the mobile service was selected, reset the service method to the default
+                        if (serviceMethodSelect.value === 'mobile') {
+                            serviceMethodSelect.value = '';
+                        }
+                    } else {
+                        // For any other service, show the mobile service option again
+                        mobileServiceOption.style.display = 'block';
+                    }
+                });
+            }
+
 
             // Remove active class from all top-level links initially
             navLinks.forEach(link => {
@@ -443,6 +463,8 @@
                         console.error(err);
                     });
             });
+
+
 
             if (addonsContainer && addonsGroup) {
                 addonsData.forEach(addon => {
