@@ -396,9 +396,131 @@
                 homeLink.classList.add('active');
             }
         }
-    });
-</script>
 
+    // Booking functionality
+            document.getElementById("booking-form").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const data = {
+                    name: document.getElementById("name").value,
+                    email: document.getElementById("email").value,
+                    phone: document.getElementById("phone").value,
+                    city: document.getElementById("city").value,
+                    address: document.getElementById("address").value,
+                    service: document.getElementById("service").value,
+                    package: document.getElementById("package").value,
+                    addons: Array.from(document.querySelectorAll('#addons-container input[type="checkbox"]:checked')).map(el => el.value),
+                    vehicle: document.getElementById("vehicle").value,
+                    date: document.getElementById("date").value,
+                    time: document.getElementById("time").value,
+                    serviceMethod: document.getElementById("serviceMethod").value,
+                    message: document.getElementById("message").value
+                };
+
+                fetch("https://script.google.com/macros/s/AKfycbxhQwNFHMlJJT14k3jWF0O_ULGgDiOG7DwcW4VwKmW49oDx6ZtTwZYG4gt9V56KKduX8A/exec", {
+                    method: "POST",
+                    body: JSON.stringify(data)
+                })
+                    .then(res => res.text())
+                    .then(result => {
+                        document.getElementById("confirmation-message").style.display = "block";
+                        document.getElementById("confirmation-message").innerText = "✅Booking submitted successfully! An email is sent to you!";
+                        document.getElementById("booking-form").reset();
+                    })
+                    .catch(err => {
+                        alert("Something went wrong. Please try again.");
+                        console.error(err);
+                    });
+            });
+
+
+
+            if (addonsContainer && addonsGroup) {
+                addonsData.forEach(addon => {
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = addon.toLowerCase().replace(/ /g, '-');
+                    checkbox.name = 'addons';
+                    checkbox.value = addon;
+
+                    const label = document.createElement('label');
+                    label.htmlFor = checkbox.id;
+                    label.textContent = addon;
+
+                    const div = document.createElement('div');
+                    div.appendChild(checkbox);
+                    div.appendChild(label);
+                    addonsContainer.appendChild(div);
+                });
+            }
+
+            if (serviceSelect && packagesGroup && packageSelect) {
+                serviceSelect.addEventListener('change', function () {
+                    const selectedService = this.value;
+                    packageSelect.innerHTML = '<option value="">Select a Package</option>'; // Reset options
+                    if (servicePackages[selectedService]) {
+                        packagesGroup.style.display = 'block';
+                        servicePackages[selectedService].forEach(packageOption => {
+                            const option = document.createElement('option');
+                            option.value = packageOption.toLowerCase().replace(/ /g, '-');
+                            option.textContent = packageOption;
+                            packageSelect.appendChild(option);
+                        });
+                    } else {
+                        packagesGroup.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+        // Phone number functionality in input field
+        const phoneInputField = document.querySelector("#phone");
+        const phoneInputInstance = window.intlTelInput(phoneInputField, {
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            onlyCountries: ["ca"],
+        });
+
+        const template = '+1 000-000-0000';
+        const digitPositions = [3, 4, 5, 7, 8, 9, 11, 12, 13, 14]; // Indices of the zeros
+        const maxDigits = digitPositions.length;
+
+        phoneInputField.addEventListener('focus', () => {
+            // Do nothing specific on focus anymore, the current value will remain
+        });
+
+        phoneInputField.addEventListener('input', (event) => {
+            // Allow only digits
+            event.target.value = event.target.value.replace(/\D/g, '');
+            // Limit the number of digits
+            if (event.target.value.length > maxDigits) {
+                event.target.value = event.target.value.slice(0, maxDigits);
+            }
+        });
+
+        phoneInputField.addEventListener('blur', (event) => {
+            const digits = event.target.value;
+            let formattedNumber = '+1 ';
+            const templateParts = template.substring(3).split('-');
+            let digitIndex = 0;
+
+            if (digits.length === maxDigits) {
+                for (let i = 0; i < templateParts.length; i++) {
+                    formattedNumber += digits.slice(digitIndex, digitIndex + templateParts[i].length);
+                    digitIndex += templateParts[i].length;
+                    if (i < templateParts.length - 1) {
+                        formattedNumber += '-';
+                    }
+                }
+                event.target.value = formattedNumber;
+            } else {
+                event.target.value = digits; // Keep the unformatted digits if not exactly 10
+            }
+    });
+
+    phoneInputField.removeEventListener('click', () => { }); // No specific click behavior needed anymore
+        phoneInputField.removeEventListener('keydown', () => { }); // Ensure no interference    
+    
+</script>
 </body>
 
 </html>
